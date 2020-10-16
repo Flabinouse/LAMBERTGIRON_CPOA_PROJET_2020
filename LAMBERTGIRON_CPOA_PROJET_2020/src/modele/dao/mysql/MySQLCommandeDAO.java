@@ -61,6 +61,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	public boolean create(Commande com) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -70,7 +71,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
 		requete.setInt(2, com.getIdcli());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		ResultSet res = requete.getGeneratedKeys();
 
@@ -92,6 +94,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	public boolean update(Commande com) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion
@@ -101,7 +104,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
 		requete.setInt(3, com.getIdcom());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -115,13 +119,15 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	public boolean delete(Commande com) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Commande WHERE id_commande=?");
 		requete.setInt(1, com.getIdcom());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();

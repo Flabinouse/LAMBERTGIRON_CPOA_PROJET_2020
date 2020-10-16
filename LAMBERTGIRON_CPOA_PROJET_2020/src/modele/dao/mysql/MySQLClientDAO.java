@@ -77,6 +77,7 @@ public class MySQLClientDAO implements ClientDAO {
 	public boolean create(Client cli) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -94,7 +95,8 @@ public class MySQLClientDAO implements ClientDAO {
 		requete.setString(9, cli.getPays());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		ResultSet res = requete.getGeneratedKeys();
 
@@ -116,6 +118,7 @@ public class MySQLClientDAO implements ClientDAO {
 	public boolean update(Client cli) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -132,7 +135,8 @@ public class MySQLClientDAO implements ClientDAO {
 		requete.setInt(10, cli.getIdclient());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -146,13 +150,15 @@ public class MySQLClientDAO implements ClientDAO {
 	public boolean delete(Client cli) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Client WHERE id_client=?");
 		requete.setInt(1, cli.getIdclient());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();

@@ -67,6 +67,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 	public boolean create(Produit prod) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion
@@ -79,7 +80,8 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setInt(5, prod.getId_categorie());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		ResultSet res = requete.getGeneratedKeys();
 
@@ -100,6 +102,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 	public boolean update(Produit prod) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -112,7 +115,8 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setInt(6, prod.getId_produit());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -126,13 +130,15 @@ public class MySQLProduitDAO implements ProduitDAO {
 	public boolean delete(Produit prod) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Produit WHERE id_produit=?");
 		requete.setInt(1, prod.getId_produit());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();

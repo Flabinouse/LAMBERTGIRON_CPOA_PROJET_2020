@@ -61,7 +61,9 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 
 	@Override
 	public boolean create(LigneCommande ligncom) throws SQLException, InvalidPropertiesFormatException, IOException {
+		
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion
@@ -73,7 +75,8 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setDouble(4, ligncom.getTarifunit());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -87,6 +90,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 	public boolean update(LigneCommande ligncom) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -97,7 +101,8 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setInt(4, ligncom.getIdprod());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -111,6 +116,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 	public boolean delete(LigneCommande ligncom) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion
@@ -119,7 +125,8 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setInt(2, ligncom.getIdprod());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();

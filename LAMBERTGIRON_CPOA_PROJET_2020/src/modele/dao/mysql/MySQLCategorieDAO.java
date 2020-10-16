@@ -33,6 +33,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	public boolean create(Categorie categ) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement(
@@ -40,9 +41,10 @@ public class MySQLCategorieDAO implements CategorieDAO {
 				Statement.RETURN_GENERATED_KEYS);
 		requete.setString(1, categ.getTitre());
 		requete.setString(2, categ.getVisuel());
-		requete.executeUpdate();
+		check = requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		ResultSet res = requete.getGeneratedKeys();
 
@@ -62,13 +64,15 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	public boolean delete(Categorie categ) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Categorie WHERE id_categorie=?");
 		requete.setInt(1, categ.getId_categorie());
 		requete.executeUpdate();
-
-		verif = true;
+		
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
@@ -81,6 +85,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	public boolean update(Categorie categ) throws SQLException, InvalidPropertiesFormatException, IOException {
 
 		boolean verif = false;
+		int check = 0;
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion
@@ -90,7 +95,8 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		requete.setInt(3, categ.getId_categorie());
 		requete.executeUpdate();
 
-		verif = true;
+		if(check == 0)
+			verif = true;
 
 		if (requete != null)
 			requete.close();
