@@ -12,6 +12,10 @@ public class Categorie {
 		this.visuel = visuel;
 	}
 
+	public Categorie() {
+
+	}
+
 	public int getId_categorie() {
 		return id_categorie;
 	}
