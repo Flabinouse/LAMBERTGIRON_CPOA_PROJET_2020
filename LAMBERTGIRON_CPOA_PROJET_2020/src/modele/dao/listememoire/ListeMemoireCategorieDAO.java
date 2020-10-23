@@ -31,11 +31,11 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	@Override
 	public boolean create(Categorie categ) {
 
-		categ.setId_categorie(3);
+		categ.setIdcategorie(3);
 
 		while (this.donnees.contains(categ)) {
 
-			categ.setId_categorie(categ.getId_categorie() + 1);
+			categ.setIdcategorie(categ.getIdcategorie() + 1);
 		}
 		boolean ok = this.donnees.add(categ);
 
@@ -47,7 +47,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 		int idx = -1;
 
 		for (Categorie categ2 : this.donnees) {
-			if (categ.getId_categorie() == categ2.getId_categorie())
+			if (categ.getIdcategorie() == categ2.getIdcategorie())
 				idx = this.donnees.indexOf(categ2);
 		}
 		// int idx = this.donnees.indexOf(categ);
@@ -70,7 +70,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 		int idx = -1;
 
 		for (Categorie categ2 : this.donnees) {
-			if (categ.getId_categorie() == categ2.getId_categorie())
+			if (categ.getIdcategorie() == categ2.getIdcategorie())
 				idx = this.donnees.indexOf(categ2);
 		}
 
@@ -91,7 +91,7 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 		int idx = -1;
 
 		for (Categorie categ2 : this.donnees) {
-			if (categ.getId_categorie() == categ2.getId_categorie())
+			if (categ.getIdcategorie() == categ2.getIdcategorie())
 				idx = this.donnees.indexOf(categ2);
 		}
 

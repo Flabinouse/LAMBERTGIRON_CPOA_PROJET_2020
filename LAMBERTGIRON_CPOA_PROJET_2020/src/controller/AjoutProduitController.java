@@ -68,7 +68,7 @@ public class AjoutProduitController {
 			prod.setTarif(tarif);
 			prod.setDescription(description);
 			prod.setVisuel(this.idChoixCateg.getValue().getVisuel());
-			prod.setId_categorie(this.idChoixCateg.getValue().getId_categorie());
+			prod.setId_categorie(this.idChoixCateg.getValue().getIdcategorie());
 			dao.getProduitDAO().create(prod);
 			Alert alert=new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Ajout d'un produit");

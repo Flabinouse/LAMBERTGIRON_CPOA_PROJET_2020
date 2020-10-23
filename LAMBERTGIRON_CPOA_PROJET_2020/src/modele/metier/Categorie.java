@@ -1,13 +1,13 @@
 package modele.metier;
 
 public class Categorie {
-	private int id_categorie;
+	private int idcategorie;
 	private String titre;
 	private String visuel;
 
-	public Categorie(int id_categorie, String titre, String visuel) {
+	public Categorie(int idcategorie, String titre, String visuel) {
 		super();
-		this.id_categorie = id_categorie;
+		this.idcategorie = idcategorie;
 		this.titre = titre;
 		this.visuel = visuel;
 	}
@@ -16,12 +16,12 @@ public class Categorie {
 
 	}
 
-	public int getId_categorie() {
-		return id_categorie;
+	public int getIdcategorie() {
+		return idcategorie;
 	}
 
-	public void setId_categorie(int id_categorie) {
-		this.id_categorie = id_categorie;
+	public void setIdcategorie(int idcategorie) {
+		this.idcategorie = idcategorie;
 	}
 
 	public String getTitre() {
@@ -62,7 +62,7 @@ public class Categorie {
 		if (getClass() != obj.getClass())
 			return false;
 		Categorie other = (Categorie) obj;
-		if (id_categorie != other.id_categorie)
+		if (idcategorie != other.idcategorie)
 			return false;
 		return true;
 	}

@@ -21,7 +21,7 @@ class MySQLCategorieDAOTest {
 
 		Categorie categ = new Categorie(0, "gants", "gants.jpeg");
 		MySQLCategorieDAO.getInstance().create(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 
 		Categorie categbdd = MySQLCategorieDAO.getInstance().getById(id);
 		assertNotNull(categbdd);
@@ -33,7 +33,7 @@ class MySQLCategorieDAOTest {
 
 		Categorie categ = new Categorie(1, "", "");
 		MySQLCategorieDAO.getInstance().create(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 
 		Categorie categbdd = MySQLCategorieDAO.getInstance().getById(id);
 		assertNull(categbdd);
@@ -64,7 +64,7 @@ class MySQLCategorieDAOTest {
 
 		Categorie categ = new Categorie(2, "pantalons", "pantalons.jpeg");
 		MySQLCategorieDAO.getInstance().update(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 
 		Categorie categbdd = MySQLCategorieDAO.getInstance().getById(id);
 		assertEquals(categbdd, categ);
@@ -76,7 +76,7 @@ class MySQLCategorieDAOTest {
 
 		Categorie categ = new Categorie(-1, "pantalons", "pantalons.jpeg");
 		MySQLCategorieDAO.getInstance().update(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 
 		Categorie categbdd = MySQLCategorieDAO.getInstance().getById(id);
 		assertNotEquals(categbdd, categ);

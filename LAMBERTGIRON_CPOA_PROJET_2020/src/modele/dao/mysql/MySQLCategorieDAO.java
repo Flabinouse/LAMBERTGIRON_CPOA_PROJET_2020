@@ -50,7 +50,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		if (res.next()) {
 			int id = res.getInt(1);
-			categ.setId_categorie(id);
+			categ.setIdcategorie(id);
 		}
 
 		if (requete != null)
@@ -68,7 +68,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Categorie WHERE id_categorie=?");
-		requete.setInt(1, categ.getId_categorie());
+		requete.setInt(1, categ.getIdcategorie());
 		requete.executeUpdate();
 		
 		if(check == 0)
@@ -92,7 +92,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 				.prepareStatement("UPDATE Categorie SET titre=?, visuel=? WHERE id_categorie =?");
 		requete.setString(1, categ.getTitre());
 		requete.setString(2, categ.getVisuel());
-		requete.setInt(3, categ.getId_categorie());
+		requete.setInt(3, categ.getIdcategorie());
 		requete.executeUpdate();
 
 		if(check == 0)

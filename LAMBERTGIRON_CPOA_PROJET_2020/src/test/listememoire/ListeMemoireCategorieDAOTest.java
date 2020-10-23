@@ -15,7 +15,7 @@ class ListeMemoireCategorieDAOTest {
 	public void CategorieCreateOK() {
 		Categorie categ = new Categorie(3, "chaussures", "chaussures.png");
 		ListeMemoireCategorieDAO.getInstance().create(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 		Categorie categliste = ListeMemoireCategorieDAO.getInstance().getById(id);
 		assertNotNull(categliste);
 	}
@@ -24,7 +24,7 @@ class ListeMemoireCategorieDAOTest {
 	public void CategorieCreateEchec() {
 		Categorie categ = new Categorie(3, "", "");
 		ListeMemoireCategorieDAO.getInstance().create(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 		Categorie categliste = ListeMemoireCategorieDAO.getInstance().getById(id);
 		assertNotNull(categliste);
 	}
@@ -33,7 +33,7 @@ class ListeMemoireCategorieDAOTest {
 	public void CategorieUpdateOK() {
 		Categorie categ = new Categorie(1, "chaussures", "chaussures.png");
 		ListeMemoireCategorieDAO.getInstance().update(categ);
-		int id = categ.getId_categorie();
+		int id = categ.getIdcategorie();
 		Categorie categliste = ListeMemoireCategorieDAO.getInstance().getById(id);
 		assertNotNull(categliste);
 	}

@@ -17,10 +17,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
+			URL fxmlURL = getClass().getResource("/fxml/Main.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
-			Scene scene = new Scene((VBox) root, 400, 200);
+			Scene scene = new Scene((VBox) root, 800, 600);
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setScene(scene);
