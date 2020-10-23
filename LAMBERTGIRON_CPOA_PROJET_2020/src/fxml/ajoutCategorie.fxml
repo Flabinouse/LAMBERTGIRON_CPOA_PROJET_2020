@@ -57,11 +57,7 @@
       </FlowPane>
       <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="91.0" prefWidth="548.0">
          <children>
-            <Label fx:id="idLabelAffi" alignment="TOP_CENTER" contentDisplay="CENTER" text="Affichage">
-               <FlowPane.margin>
-                  <Insets />
-               </FlowPane.margin>
-            </Label>
+            <Label fx:id="idLabelAffi" alignment="TOP_CENTER" contentDisplay="CENTER" text="Affichage"></Label>
          </children>
       </FlowPane>
    </children>

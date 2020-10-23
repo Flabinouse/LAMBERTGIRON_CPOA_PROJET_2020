@@ -27,6 +27,10 @@ public class Client {
 		this.pays = pays;
 	}
 
+	public Client() {
+
+	}
+
 	public int getIdclient() {
 		return idclient;
 	}
