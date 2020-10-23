@@ -14,6 +14,10 @@ public class Commande {
 		this.idcli = idcli;
 	}
 
+	public Commande() {
+
+	}
+
 	public int getIdcom() {
 		return idcom;
 	}

@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.dao.factory.Persistance;
@@ -15,9 +14,6 @@ import modele.metier.Client;
 public class AjoutClientController {
 
 	private DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-
-	@FXML
-	private GridPane idGrid1;
 
 	@FXML
 	private TextField idTextNom;

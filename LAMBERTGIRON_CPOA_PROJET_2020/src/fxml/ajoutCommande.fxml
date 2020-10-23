@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutCommandeController">
+   <children>
+      <GridPane prefHeight="173.0" prefWidth="684.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Date commande :" GridPane.rowIndex="1" />
+            <Label text="Id client :" GridPane.rowIndex="2" />
+            <DatePicker fx:id="idDtpDatecom" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="idTextIdclient" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="81.0" prefWidth="684.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="218.0" spacing="20.0">
+               <children>
+                  <Button fx:id="idBoutonCreer" mnemonicParsing="false" onAction="#creerCommande" text="Créer" />
+                  <Button fx:id="idBoutonModif" mnemonicParsing="false" onAction="#modifCommande" text="Modifier" />
+               </children>
+            </HBox>
+         </children>
+      </FlowPane>
+   </children>
+</VBox>

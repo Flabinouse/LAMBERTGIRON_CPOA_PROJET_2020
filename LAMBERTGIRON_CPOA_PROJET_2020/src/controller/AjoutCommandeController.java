@@ -1,25 +1,28 @@
 package controller;
 
+import java.time.LocalDate;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.dao.factory.Persistance;
-import modele.metier.Categorie;
+import modele.metier.Commande;
 
-public class AjoutCategorieController {
+public class AjoutCommandeController {
 
 	private DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 
 	@FXML
-	private TextField idTextTitre;
+	private DatePicker idDtpDatecom;
 
 	@FXML
-	private TextField idTextVisu;
+	private TextField idTextIdclient;
 
 	@FXML
 	private Button idBoutonCreer;
@@ -31,18 +34,18 @@ public class AjoutCategorieController {
 	private Label idLabelAffi;
 
 	@FXML
-	public void creerCategorie(ActionEvent event) throws Exception {
+	public void creerCommande(ActionEvent event) throws Exception {
 
 		try {
-			String titre = this.idTextTitre.getText().trim();
-			String visuel = this.idTextVisu.getText().trim();
-			Categorie categ = new Categorie();
-			categ.setTitre(titre);
-			categ.setVisuel(visuel);
-			dao.getCategorieDAO().create(categ);
+			LocalDate datecom = idDtpDatecom.getValue();
+			int idcli = Integer.parseInt(this.idTextIdclient.getText().trim());
+			Commande com = new Commande();
+			com.setDatecom(datecom);
+			com.setIdcli(idcli);
+			dao.getCommandeDAO().create(com);
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Ajout d'une categorie");
-			alert.setHeaderText("Categorie créer : " + titre + " " + visuel);
+			alert.setTitle("Ajout d'une commande");
+			alert.setHeaderText("Commande cree : " + datecom + " " + idcli);
 			alert.showAndWait();
 			Stage stage = (Stage) idBoutonCreer.getScene().getWindow();
 			stage.close();
@@ -54,7 +57,7 @@ public class AjoutCategorieController {
 	}
 
 	@FXML
-	public void modifCategorie(ActionEvent event) throws Exception {
+	public void modifCommande(ActionEvent event) throws Exception {
 		/*
 		 * try { String nom = this.idTextNom.getText().trim(); String description =
 		 * this.idTextDesc.getText().trim(); float tarif =
