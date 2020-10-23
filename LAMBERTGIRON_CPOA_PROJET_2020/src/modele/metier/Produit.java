@@ -1,32 +1,32 @@
 package modele.metier;
 
 public class Produit {
-	private int id_produit;
+	private int idproduit;
 	private String nom;
 	private String description;
 	private float tarif;
 	private String visuel;
-	private int id_categorie;
+	private int idcategorie;
 
-	public Produit(int id_produit, String nom, String description, float tarif, String visuel, int id_categorie) {
+	public Produit(int idproduit, String nom, String description, float tarif, String visuel, int idcategorie) {
 		super();
-		this.id_produit = id_produit;
+		this.idproduit = idproduit;
 		this.nom = nom;
 		this.description = description;
 		this.tarif = tarif;
 		this.visuel = visuel;
-		this.id_categorie = id_categorie;
+		this.idcategorie = idcategorie;
 	}
 
 	public Produit() {
 	}
 
-	public int getId_produit() {
-		return id_produit;
+	public int getIdproduit() {
+		return idproduit;
 	}
 
 	public void setId_produit(int id_produit) {
-		this.id_produit = id_produit;
+		this.idproduit = idproduit;
 	}
 
 	public String getNom() {
@@ -77,22 +77,22 @@ public class Produit {
 		}
 	}
 
-	public int getId_categorie() {
-		return id_categorie;
+	public int getIdcategorie() {
+		return idcategorie;
 	}
 
-	public void setId_categorie(int id_categorie) {
-		if (id_categorie <= 0) {
+	public void setIdcategorie(int idcategorie) {
+		if (idcategorie <= 0) {
 			throw new IllegalArgumentException("L'id categorie est null ou negatif !");
 		} else {
-			this.id_categorie = id_categorie;
+			this.idcategorie = idcategorie;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Produit [id_produit=" + id_produit + ", nom=" + nom + ", description=" + description + ", tarif="
-				+ tarif + ", visuel=" + visuel + ", id_categorie=" + id_categorie + "]";
+		return "Produit [id_produit=" + idproduit + ", nom=" + nom + ", description=" + description + ", tarif="
+				+ tarif + ", visuel=" + visuel + ", id_categorie=" + idcategorie + "]";
 	}
 
 	@Override
@@ -104,9 +104,9 @@ public class Produit {
 		if (getClass() != obj.getClass())
 			return false;
 		Produit other = (Produit) obj;
-		if (id_produit != other.id_produit)
+		if (idproduit != other.idproduit)
 			return false;
-		if (id_categorie != other.id_categorie)
+		if (idcategorie != other.idcategorie)
 			return false;
 		if (Float.floatToIntBits(tarif) != Float.floatToIntBits(other.tarif))
 			return false;

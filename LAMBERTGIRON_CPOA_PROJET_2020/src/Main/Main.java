@@ -20,7 +20,7 @@ public class Main extends Application {
 			URL fxmlURL = getClass().getResource("/fxml/Main.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
-			Scene scene = new Scene((VBox) root, 800, 600);
+			Scene scene = new Scene((VBox) root, 755.0, 475.0);
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setScene(scene);

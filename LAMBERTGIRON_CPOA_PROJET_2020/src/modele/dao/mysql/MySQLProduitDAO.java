@@ -77,7 +77,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setString(2, prod.getDescription());
 		requete.setFloat(3, prod.getTarif());
 		requete.setString(4, prod.getVisuel());
-		requete.setInt(5, prod.getId_categorie());
+		requete.setInt(5, prod.getIdcategorie());
 		requete.executeUpdate();
 
 		if(check == 0)
@@ -111,8 +111,8 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setString(2, prod.getDescription());
 		requete.setFloat(3, prod.getTarif());
 		requete.setString(4, prod.getVisuel());
-		requete.setInt(5, prod.getId_categorie());
-		requete.setInt(6, prod.getId_produit());
+		requete.setInt(5, prod.getIdcategorie());
+		requete.setInt(6, prod.getIdproduit());
 		requete.executeUpdate();
 
 		if(check == 0)
@@ -134,7 +134,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 
 		Connection laConnexion = Connexion.getInstance().creeConnexion();
 		PreparedStatement requete = laConnexion.prepareStatement("DELETE FROM Produit WHERE id_produit=?");
-		requete.setInt(1, prod.getId_produit());
+		requete.setInt(1, prod.getIdproduit());
 		requete.executeUpdate();
 
 		if(check == 0)

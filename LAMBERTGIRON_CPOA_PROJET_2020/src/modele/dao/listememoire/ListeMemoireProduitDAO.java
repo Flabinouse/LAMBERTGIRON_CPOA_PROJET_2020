@@ -41,7 +41,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 		while (this.donnees.contains(prod)) {
 
-			prod.setId_produit(prod.getId_produit() + 1);
+			prod.setId_produit(prod.getIdproduit() + 1);
 		}
 		boolean ok = this.donnees.add(prod);
 
@@ -54,7 +54,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		int idx = -1;
 
 		for (Produit prod2 : this.donnees) {
-			if (prod.getId_produit() == prod2.getId_produit())
+			if (prod.getIdproduit() == prod2.getIdproduit())
 				idx = this.donnees.indexOf(prod2);
 		}
 
@@ -77,7 +77,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		int idx = -1;
 
 		for (Produit prod2 : this.donnees) {
-			if (prod.getId_produit() == prod2.getId_produit())
+			if (prod.getIdproduit() == prod2.getIdproduit())
 				idx = this.donnees.indexOf(prod2);
 		}
 
@@ -98,7 +98,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		int idx = -1;
 
 		for (Produit prod2 : this.donnees) {
-			if (prod.getId_produit() == prod2.getId_produit())
+			if (prod.getIdproduit() == prod2.getIdproduit())
 				idx = this.donnees.indexOf(prod2);
 		}
 

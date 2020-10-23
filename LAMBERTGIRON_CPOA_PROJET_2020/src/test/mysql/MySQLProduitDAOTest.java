@@ -21,7 +21,7 @@ class MySQLProduitDAOTest {
 
 		Produit prod = new Produit(0, "test", "Les tests sont la !", 10, "test.png", 1);
 		MySQLProduitDAO.getInstance().create(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 
 		Produit categbdd = MySQLProduitDAO.getInstance().getById(id);
 		assertNotNull(categbdd);
@@ -33,7 +33,7 @@ class MySQLProduitDAOTest {
 
 		Produit prod = new Produit(0, "", "", -10, "", -1);
 		MySQLProduitDAO.getInstance().create(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 
 		Produit prodbdd = MySQLProduitDAO.getInstance().getById(id);
 		assertNull(prodbdd);
@@ -65,7 +65,7 @@ class MySQLProduitDAOTest {
 
 		Produit prod = new Produit(1, "test", "Les tests, ca test ! et c''est cool !", 10, "test.png", 1);
 		MySQLProduitDAO.getInstance().update(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 
 		Produit prodbdd = MySQLProduitDAO.getInstance().getById(id);
 		assertEquals(prodbdd, prod);
@@ -77,7 +77,7 @@ class MySQLProduitDAOTest {
 
 		Produit prod = new Produit(-1, "test", "Les tests, ca test ! et c''est cool !", 10, "test.png", 1);
 		MySQLProduitDAO.getInstance().update(prod);
-		int id = prod.getId_categorie();
+		int id = prod.getIdcategorie();
 
 		Produit prodbdd = MySQLProduitDAO.getInstance().getById(id);
 		assertNotEquals(prodbdd, prod);

@@ -15,7 +15,7 @@ class ListeMemoireProduitDAOTest {
 	public void ProduitCreateOK() {
 		Produit prod = new Produit(0, "Mario te kiffe", "Inspire par la Saga", 45, "pull0.png", 1);
 		ListeMemoireProduitDAO.getInstance().create(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 		Produit prodliste = ListeMemoireProduitDAO.getInstance().getById(id);
 		assertNotNull(prodliste);
 	}
@@ -24,7 +24,7 @@ class ListeMemoireProduitDAOTest {
 	public void ProduitCreateEchec() {
 		Produit prod = new Produit(0, "", "", 0, "", -1);
 		ListeMemoireProduitDAO.getInstance().create(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 		Produit prodliste = ListeMemoireProduitDAO.getInstance().getById(id);
 		assertNotNull(prodliste);
 	}
@@ -33,7 +33,7 @@ class ListeMemoireProduitDAOTest {
 	public void ProduitUpdateOK() {
 		Produit prod = new Produit(6, "Mario te kiffe", "Inspire par la Saga", 45, "pull0.png", 1);
 		ListeMemoireProduitDAO.getInstance().update(prod);
-		int id = prod.getId_produit();
+		int id = prod.getIdproduit();
 		Produit prodliste = ListeMemoireProduitDAO.getInstance().getById(id);
 		assertNotNull(prodliste);
 	}
