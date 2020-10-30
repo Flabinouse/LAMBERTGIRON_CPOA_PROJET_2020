@@ -43,10 +43,7 @@ public class AjoutClientController {
 	private TextField idTextPays;
 
 	@FXML
-	private Button BoutonCreer;
-
-	@FXML
-	private Button BoutonModif;
+	private Button idBoutonValider;
 
 	@FXML
 	private Label idLabelAffi;
@@ -80,7 +77,7 @@ public class AjoutClientController {
 			alert.setHeaderText("Client cree : " + nom + " " + prenom + " " + ident + " " + mdp + " " + numero + " "
 					+ rue + " " + postal + " " + ville + " " + pays);
 			alert.showAndWait();
-			Stage stage = (Stage) BoutonCreer.getScene().getWindow();
+			Stage stage = (Stage) idBoutonValider.getScene().getWindow();
 			stage.close();
 
 		} catch (IllegalArgumentException e) {

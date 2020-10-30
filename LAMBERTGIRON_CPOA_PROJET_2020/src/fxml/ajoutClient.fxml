@@ -6,13 +6,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutClientController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutClientController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="740.0">
+      <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="740.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,14 +50,9 @@
             <TextField fx:id="idTextPays" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
-      <FlowPane prefHeight="21.0" prefWidth="740.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="63.0" prefWidth="740.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="740.0" spacing="20.0">
-               <children>
-                  <Button fx:id="BoutonCreer" mnemonicParsing="false" onAction="#creerClient" text="Créer" />
-                  <Button fx:id="BoutonModif" mnemonicParsing="false" onAction="#modifClient" text="Modifier" />
-               </children>
-            </HBox>
+            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#creerClient" text="Valider" />
          </children>
       </FlowPane>
    </children>

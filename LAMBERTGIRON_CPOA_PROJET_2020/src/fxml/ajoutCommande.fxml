@@ -7,12 +7,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutCommandeController">
+<VBox xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutCommandeController">
    <children>
       <GridPane prefHeight="173.0" prefWidth="684.0">
         <columnConstraints>
@@ -32,14 +30,9 @@
             <TextField fx:id="idTextIdclient" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="81.0" prefWidth="684.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="77.0" prefWidth="684.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="218.0" spacing="20.0">
-               <children>
-                  <Button fx:id="idBoutonCreer" mnemonicParsing="false" onAction="#creerCommande" text="Créer" />
-                  <Button fx:id="idBoutonModif" mnemonicParsing="false" onAction="#modifCommande" text="Modifier" />
-               </children>
-            </HBox>
+            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#creerCommande" text="Valider" />
          </children>
       </FlowPane>
    </children>

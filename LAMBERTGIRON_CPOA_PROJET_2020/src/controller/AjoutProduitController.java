@@ -47,7 +47,7 @@ public class AjoutProduitController {
 
 	@FXML private ChoiceBox<Categorie> idChoixCateg;
 
-	@FXML private Button idBoutonCreer;
+	@FXML private Button idBoutonValider;
 
 	@FXML
 	public void initialize() throws Exception {
@@ -72,9 +72,9 @@ public class AjoutProduitController {
 			dao.getProduitDAO().create(prod);
 			Alert alert=new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Ajout d'un produit");
-			alert.setHeaderText("Produit créer : " + nom + " " + description + "(" + this.idChoixCateg.getValue().getTitre() + "), " + tarif);
+			alert.setHeaderText("Produit cree : " + nom + " " + description + "(" + this.idChoixCateg.getValue().getTitre() + "), " + tarif);
 			alert.showAndWait();
-			Stage stage = (Stage) idBoutonCreer.getScene().getWindow();
+			Stage stage = (Stage) idBoutonValider.getScene().getWindow();
 			stage.close();
 
 		} catch (IllegalArgumentException e) {

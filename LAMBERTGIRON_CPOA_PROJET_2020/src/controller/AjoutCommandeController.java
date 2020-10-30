@@ -25,10 +25,7 @@ public class AjoutCommandeController {
 	private TextField idTextIdclient;
 
 	@FXML
-	private Button idBoutonCreer;
-
-	@FXML
-	private Button idBoutonModif;
+	private Button idBoutonValider;
 
 	@FXML
 	private Label idLabelAffi;
@@ -47,7 +44,7 @@ public class AjoutCommandeController {
 			alert.setTitle("Ajout d'une commande");
 			alert.setHeaderText("Commande cree : " + datecom + " " + idcli);
 			alert.showAndWait();
-			Stage stage = (Stage) idBoutonCreer.getScene().getWindow();
+			Stage stage = (Stage) idBoutonValider.getScene().getWindow();
 			stage.close();
 
 		} catch (IllegalArgumentException e) {
