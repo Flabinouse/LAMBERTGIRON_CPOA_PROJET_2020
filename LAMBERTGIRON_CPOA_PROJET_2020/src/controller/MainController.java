@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,6 +49,9 @@ public class MainController extends Application {
 
 	@FXML
 	private Button validPers;
+
+	@FXML
+	private TabPane tabpane;
 
 	@FXML
 	TableView<Categorie> tableCateg = new TableView<Categorie>();
@@ -176,20 +180,43 @@ public class MainController extends Application {
 	}
 
 	@FXML
+	public void validPersistance(ActionEvent event) throws Exception {
+		if (this.choixPers.getValue() == "MySQL") {
+			dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+			this.choixPers.setValue("MySQL");
+			tableUpdate();
+		} else {
+			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE);
+			this.choixPers.setValue("Liste Memoire");
+			tableUpdate();
+		}
+	}
+
+	@FXML
 	public void creerCateg(ActionEvent event) throws Exception {
 
 		try {
-			URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-			Node root = fxmlLoader.load();
-			Scene scene = new Scene((VBox) root, 400, 240);
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(scene);
-			stage.setTitle("Ajout d'une categorie");
-			stage.setResizable(false);
-			stage.show();
-			tableUpdate();
+			int idTab = tabpane.getSelectionModel().getSelectedIndex();
+
+			switch (idTab) {
+			case 0:
+
+				URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
+				FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+				Node root = fxmlLoader.load();
+				Scene scene = new Scene((VBox) root, 400, 240);
+				Stage stage = new Stage();
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.setScene(scene);
+				stage.setTitle("Ajout d'une categorie");
+				stage.setResizable(false);
+				stage.show();
+				tableUpdate();
+
+				break;
+
+			case 1:
+			}
 		} catch (IllegalArgumentException e) {
 
 		}

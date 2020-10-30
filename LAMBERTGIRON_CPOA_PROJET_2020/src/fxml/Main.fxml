@@ -20,7 +20,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TabPane prefHeight="200.0" prefWidth="804.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                  <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="804.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                      <tabs>
                         <Tab fx:id="tabCateg" text="Categories">
                            <content>
@@ -109,7 +109,7 @@
                                  <children>
                                     <Label text="Changer de mode de persistance :" textAlignment="CENTER" wrapText="true" />
                                     <ChoiceBox fx:id="choixPers" prefWidth="150.0" />
-                                    <Button fx:id="validPers" mnemonicParsing="false" text="Valider" />
+                                    <Button fx:id="validPers" mnemonicParsing="false" onAction="#validPersistance" text="Valider" />
                                  </children>
                               </VBox>
                            </children>
