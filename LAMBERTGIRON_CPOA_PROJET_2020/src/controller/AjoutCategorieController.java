@@ -1,25 +1,20 @@
 package controller;
 
-import java.net.URL;
-
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.metier.Categorie;
 
-public class AjoutCategorieController extends Application implements IAjoutModif<Categorie> {
+public class AjoutCategorieController implements IAjoutModif<Categorie> {
 
 	private DAOFactory dao;
 
@@ -49,28 +44,6 @@ public class AjoutCategorieController extends Application implements IAjoutModif
 	private Label idLabelAffi;
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		try {
-			URL fxmlURL = getClass().getResource("/fxml/Main.fxml");
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-			Node root = fxmlLoader.load();
-			Scene scene = new Scene((VBox) root, 350, 300);
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Application de gestion des pulls de noel");
-			primaryStage.setResizable(false);
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
-	@Override
 	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
 		try {
 
@@ -83,7 +56,7 @@ public class AjoutCategorieController extends Application implements IAjoutModif
 
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("Ajout d'une Categorioe");
+			stage.setTitle("Ajout d'une Categorie");
 			stage.setScene(new Scene(root));
 			stage.show();
 

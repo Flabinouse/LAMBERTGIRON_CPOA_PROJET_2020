@@ -52,7 +52,7 @@
       </GridPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="63.0" prefWidth="740.0">
          <children>
-            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#creerClient" text="Valider" />
+            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#validation" text="Valider" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="740.0">

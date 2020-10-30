@@ -232,13 +232,14 @@ public class MainController extends Application {
 				break;
 
 			case 2:
-			
-				
+				fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutProduit.fxml"));
+
+				new AjoutProduitController().create(fxmlLoader, dao, stage, main, action);
+
 				break;
 
 			case 3:
-			
-				
+
 				break;
 			}
 		} catch (IllegalArgumentException e) {
@@ -274,7 +275,10 @@ public class MainController extends Application {
 				break;
 
 			case 2:
+				fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutProduit.fxml"));
 
+				Produit prod = this.tableProduit.getSelectionModel().getSelectedItem();
+				new AjoutProduitController().update(fxmlLoader, dao, stage, main, action, prod);
 				break;
 
 			case 3:
