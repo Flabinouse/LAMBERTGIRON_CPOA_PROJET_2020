@@ -28,8 +28,8 @@ import modele.dao.factory.DAOFactory;
 import modele.dao.factory.Persistance;
 import modele.metier.Categorie;
 import modele.metier.Client;
-import modele.metier.Produit;
 import modele.metier.Commande;
+import modele.metier.Produit;
 
 public class MainController extends Application {
 	private DAOFactory dao;
@@ -99,16 +99,16 @@ public class MainController extends Application {
 
 	@FXML
 	TableColumn<Produit, Integer> nbCom;
-	
+
 	@FXML
 	TableView<Commande> tableCommande = new TableView<Commande>();
-	
+
 	@FXML
 	TableColumn<Commande, Integer> idCommande;
-	
+
 	@FXML
 	TableColumn<Commande, Date> DateCommande;
-	
+
 	@FXML
 	TableColumn<Commande, Integer> idClient;
 
@@ -212,19 +212,17 @@ public class MainController extends Application {
 		try {
 			int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
+			FXMLLoader fxmlLoader;
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			enumAction action = enumAction.Create;
+			MainController main = this;
+
 			switch (idTab) {
 			case 0:
-				URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
-				FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-				Node root = fxmlLoader.load();
-				Scene scene = new Scene((VBox) root, 400, 240);
-				Stage stage = new Stage();
-				stage.initModality(Modality.APPLICATION_MODAL);
-				stage.setScene(scene);
-				stage.setTitle("Ajout d'une categorie");
-				stage.setResizable(false);
-				stage.show();
-				tableUpdate();
+				fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCategorie.fxml"));
+
+				new AjoutCategorieController().create(fxmlLoader, dao, stage, main, action);
 				break;
 
 			case 1:
@@ -240,7 +238,7 @@ public class MainController extends Application {
 				stagecli.show();
 				tableUpdate();
 				break;
-				
+
 			case 2:
 				URL fxmlprodURL = getClass().getResource("/fxml/ajoutProduit.fxml");
 				FXMLLoader fxmlprodLoader = new FXMLLoader(fxmlprodURL);
@@ -254,7 +252,7 @@ public class MainController extends Application {
 				stageprod.show();
 				tableUpdate();
 				break;
-				
+
 			case 3:
 				URL fxmlcomURL = getClass().getResource("/fxml/ajoutCommandefxml");
 				FXMLLoader fxmlcomLoader = new FXMLLoader(fxmlcomURL);
@@ -278,23 +276,35 @@ public class MainController extends Application {
 	public void modifCateg(ActionEvent event) throws Exception {
 
 		try {
-			Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
-			try {
-				URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
-				FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-				Node root = fxmlLoader.load();
-				Scene scene = new Scene((VBox) root, 400, 240);
-				Stage stage = new Stage();
-				stage.initModality(Modality.APPLICATION_MODAL);
-				stage.setScene(scene);
-				stage.setTitle("Ajout d'une categorie");
-				stage.setResizable(false);
-				stage.show();
-				tableUpdate();
-			} catch (IllegalArgumentException e) {
+			int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
+			FXMLLoader fxmlLoader;
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			enumAction action = enumAction.Update;
+			MainController main = this;
+
+			switch (idTab) {
+			case 0:
+				fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCategorie.fxml"));
+
+				Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
+				new AjoutCategorieController().update(fxmlLoader, dao, stage, main, action, categ);
+
+				break;
+
+			case 1:
+
+				break;
+
+			case 2:
+
+				break;
+
+			case 3:
+
+				break;
 			}
-
 		} catch (IllegalArgumentException e) {
 
 		}
@@ -318,13 +328,13 @@ public class MainController extends Application {
 				dao.getClientDAO().delete(cli);
 				tableUpdate();
 				break;
-				
+
 			case 2:
 				Produit prod = this.tableProduit.getSelectionModel().getSelectedItem();
 				dao.getProduitDAO().delete(prod);
 				tableUpdate();
 				break;
-				
+
 			case 3:
 				Commande com = this.tableCommande.getSelectionModel().getSelectedItem();
 				dao.getCommandeDAO().delete(com);

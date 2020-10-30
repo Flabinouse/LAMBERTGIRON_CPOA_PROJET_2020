@@ -46,8 +46,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="548.0" spacing="20.0">
                      <children>
-                        <Button fx:id="idBoutonCreer" contentDisplay="CENTER" mnemonicParsing="false" onAction="#creerCategorie" text="Creer" />
-                        <Button fx:id="idBoutonModif" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifCategorie" text="Modifier" />
+                        <Button fx:id="idValid" contentDisplay="CENTER" mnemonicParsing="false" onAction="#validation" text="Valider" />
                      </children>
                   </HBox>
                </children>
