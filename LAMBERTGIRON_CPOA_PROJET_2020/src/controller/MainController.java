@@ -200,7 +200,6 @@ public class MainController extends Application {
 
 			switch (idTab) {
 			case 0:
-
 				URL fxmlURL = getClass().getResource("/fxml/ajoutCategorie.fxml");
 				FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 				Node root = fxmlLoader.load();
@@ -212,10 +211,49 @@ public class MainController extends Application {
 				stage.setResizable(false);
 				stage.show();
 				tableUpdate();
-
 				break;
 
 			case 1:
+				URL fxmlcliURL = getClass().getResource("/fxml/ajoutClient.fxml");
+				FXMLLoader fxmlcliLoader = new FXMLLoader(fxmlcliURL);
+				Node rootcli = fxmlcliLoader.load();
+				Scene scenecli = new Scene((VBox) rootcli, 500, 550);
+				Stage stagecli = new Stage();
+				stagecli.initModality(Modality.APPLICATION_MODAL);
+				stagecli.setScene(scenecli);
+				stagecli.setTitle("Ajout d'un client");
+				stagecli.setResizable(false);
+				stagecli.show();
+				tableUpdate();
+				break;
+				
+			case 2:
+				URL fxmlprodURL = getClass().getResource("/fxml/ajoutProduit.fxml");
+				FXMLLoader fxmlprodLoader = new FXMLLoader(fxmlprodURL);
+				Node rootprod = fxmlprodLoader.load();
+				Scene sceneprod = new Scene((VBox) rootprod, 500, 400);
+				Stage stageprod = new Stage();
+				stageprod.initModality(Modality.APPLICATION_MODAL);
+				stageprod.setScene(sceneprod);
+				stageprod.setTitle("Ajout d'un produit");
+				stageprod.setResizable(false);
+				stageprod.show();
+				tableUpdate();
+				break;
+				
+			case 3:
+				URL fxmlcomURL = getClass().getResource("/fxml/ajoutCommandefxml");
+				FXMLLoader fxmlcomLoader = new FXMLLoader(fxmlcomURL);
+				Node rootcom = fxmlcomLoader.load();
+				Scene scenecom = new Scene((VBox) rootcom, 400, 240);
+				Stage stagecom = new Stage();
+				stagecom.initModality(Modality.APPLICATION_MODAL);
+				stagecom.setScene(scenecom);
+				stagecom.setTitle("Ajout d'une commande");
+				stagecom.setResizable(false);
+				stagecom.show();
+				tableUpdate();
+				break;
 			}
 		} catch (IllegalArgumentException e) {
 
