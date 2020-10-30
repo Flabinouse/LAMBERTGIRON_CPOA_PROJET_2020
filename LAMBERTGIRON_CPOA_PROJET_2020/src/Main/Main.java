@@ -24,7 +24,7 @@ public class Main extends Application {
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Ajout d'un produit ");
+			primaryStage.setTitle("Application de gestion des pulls de noel");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (Exception e) {

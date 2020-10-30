@@ -2,6 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,8 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="754.0">
          <children>
@@ -99,17 +101,33 @@
                   </TabPane>
                </center>
                <right>
-                  <VBox alignment="CENTER" prefHeight="464.0" prefWidth="107.0" spacing="60.0">
-                     <children>
-                        <Button fx:id="creerButton" mnemonicParsing="false" onAction="#creerCateg" prefHeight="26.0" prefWidth="208.0" text="Créer" />
-                        <Button fx:id="modifButton" mnemonicParsing="false" onAction="#modifCateg" prefHeight="26.0" prefWidth="215.0" text="Modification" />
-                        <Button fx:id="supprButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#supprCateg" prefHeight="26.0" prefWidth="156.0" text="Supprimer" />
-                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeCateg" prefHeight="26.0" prefWidth="342.0" text="Fermer" />
-                     </children>
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </VBox>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="158.0">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="-2.0" layoutY="-1.0" prefHeight="181.0" prefWidth="162.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Changer de mode de persistance :" textAlignment="CENTER" wrapText="true" />
+                                    <ChoiceBox fx:id="choixPers" prefWidth="150.0" />
+                                    <Button fx:id="validPers" mnemonicParsing="false" text="Valider" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="324.0" prefWidth="158.0">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="-2.0" layoutY="-3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="291.0" prefWidth="160.0" spacing="37.0">
+                                 <children>
+                                    <Button fx:id="creerButton" alignment="CENTER" mnemonicParsing="false" onAction="#creerCateg" prefHeight="26.0" prefWidth="209.0" text="Créer" />
+                                    <Button fx:id="modifButton" alignment="CENTER" mnemonicParsing="false" onAction="#modifCateg" prefHeight="26.0" prefWidth="292.0" text="Modification" />
+                                    <Button fx:id="supprButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#supprCateg" prefHeight="26.0" prefWidth="224.0" text="Supprimer" />
+                                    <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#closeCateg" prefHeight="26.0" prefWidth="198.0" text="Fermer" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
                </right>
             </BorderPane>
          </children>

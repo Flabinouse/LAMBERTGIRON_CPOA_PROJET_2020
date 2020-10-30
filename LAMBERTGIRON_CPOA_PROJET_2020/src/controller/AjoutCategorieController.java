@@ -1,17 +1,24 @@
 package controller;
 
+import java.net.URL;
+
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.dao.factory.Persistance;
 import modele.metier.Categorie;
 
-public class AjoutCategorieController {
+public class AjoutCategorieController extends Application {
 
 	private DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 
@@ -30,6 +37,34 @@ public class AjoutCategorieController {
 	@FXML
 	private Label idLabelAffi;
 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		try {
+			URL fxmlURL = getClass().getResource("/fxml/Main.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+			Node root = fxmlLoader.load();
+			Scene scene = new Scene((VBox) root, 350, 300);
+			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Application de gestion des pulls de noel");
+			primaryStage.setResizable(false);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	public void defineCateg(Categorie categ) {
+
+		this.idTextTitre.setText(categ.getTitre());
+		this.idTextVisu.setText(categ.getVisuel());
+	}
+
 	@FXML
 	public void creerCategorie(ActionEvent event) throws Exception {
 
@@ -42,7 +77,7 @@ public class AjoutCategorieController {
 			dao.getCategorieDAO().create(categ);
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Ajout d'une categorie");
-			alert.setHeaderText("Categorie créer : " + titre + " " + visuel);
+			alert.setHeaderText("Categorie creer : " + titre + " " + visuel);
 			alert.showAndWait();
 			Stage stage = (Stage) idBoutonCreer.getScene().getWindow();
 			stage.close();
@@ -55,25 +90,7 @@ public class AjoutCategorieController {
 
 	@FXML
 	public void modifCategorie(ActionEvent event) throws Exception {
-		/*
-		 * try { String nom = this.idTextNom.getText().trim(); String description =
-		 * this.idTextDesc.getText().trim(); float tarif =
-		 * Float.parseFloat(this.idTextTarif.getText().trim()); Produit prod = new
-		 * Produit(); prod.setId_produit(0);//a modif prod.setNom(nom);
-		 * prod.setTarif(tarif); prod.setDescription(description);
-		 * prod.setVisuel(this.idChoixCateg.getValue().getVisuel());
-		 * prod.setId_categorie(this.idChoixCateg.getValue().getId_categorie());
-		 * dao.getProduitDAO().update(prod); Alert alert=new
-		 * Alert(Alert.AlertType.INFORMATION); alert.setTitle("Ajout d'un produit");
-		 * alert.setHeaderText("Produit créer : " + nom + " " + description + "(" +
-		 * this.idChoixCateg.getValue().getTitre() + "), " + tarif);
-		 * alert.showAndWait(); Stage stage = (Stage)
-		 * idBoutonCreer.getScene().getWindow(); stage.close();
-		 * 
-		 * } catch (IllegalArgumentException e) {
-		 * this.idLabelRes.setStyle("-fx-text-fill: red;");
-		 * this.idLabelRes.setText("Veuillez saisir tous les champs"); }
-		 */
+		System.out.println("salut ca marche");
 	}
 
 }
