@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutClientController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutClientController">
    <children>
       <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="740.0">
          <columnConstraints>
@@ -53,6 +53,11 @@
       <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="63.0" prefWidth="740.0">
          <children>
             <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#creerClient" text="Valider" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="740.0">
+         <children>
+            <Label fx:id="idLabelAffi" />
          </children>
       </FlowPane>
    </children>
