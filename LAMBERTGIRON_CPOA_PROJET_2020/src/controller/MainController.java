@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.Optional;
 
 import javafx.application.Application;
@@ -28,6 +29,7 @@ import modele.dao.factory.Persistance;
 import modele.metier.Categorie;
 import modele.metier.Client;
 import modele.metier.Produit;
+import modele.metier.Commande;
 
 public class MainController extends Application {
 	private DAOFactory dao;
@@ -97,6 +99,18 @@ public class MainController extends Application {
 
 	@FXML
 	TableColumn<Produit, Integer> nbCom;
+	
+	@FXML
+	TableView<Commande> tableCommande = new TableView<Commande>();
+	
+	@FXML
+	TableColumn<Commande, Integer> idCommande;
+	
+	@FXML
+	TableColumn<Commande, Date> DateCommande;
+	
+	@FXML
+	TableColumn<Commande, Integer> idClient;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -290,10 +304,33 @@ public class MainController extends Application {
 	public void supprCateg(ActionEvent event) throws Exception {
 
 		try {
+			int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
-			Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
-			dao.getCategorieDAO().delete(categ);
-			tableUpdate();
+			switch (idTab) {
+			case 0:
+				Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
+				dao.getCategorieDAO().delete(categ);
+				tableUpdate();
+				break;
+
+			case 1:
+				Client cli = this.tableClients.getSelectionModel().getSelectedItem();
+				dao.getClientDAO().delete(cli);
+				tableUpdate();
+				break;
+				
+			case 2:
+				Produit prod = this.tableProduit.getSelectionModel().getSelectedItem();
+				dao.getProduitDAO().delete(prod);
+				tableUpdate();
+				break;
+				
+			case 3:
+				Commande com = this.tableCommande.getSelectionModel().getSelectedItem();
+				dao.getCommandeDAO().delete(com);
+				tableUpdate();
+				break;
+			}
 		} catch (IllegalArgumentException e) {
 
 		}
