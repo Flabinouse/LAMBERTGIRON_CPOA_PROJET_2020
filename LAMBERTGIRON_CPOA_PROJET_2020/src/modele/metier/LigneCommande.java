@@ -14,6 +14,9 @@ public class LigneCommande {
 		this.tarifunit = tarifunit;
 	}
 
+	public LigneCommande() {
+	}
+
 	public int getIdcom() {
 		return idcom;
 	}
@@ -54,7 +57,7 @@ public class LigneCommande {
 		return tarifunit;
 	}
 
-	public void setTarifunit(float tarifunit) {
+	public void setTarifunit(double tarifunit) {
 		if (tarifunit <= 0) {
 			throw new IllegalArgumentException("Le tarif unitaire est null ou negatif !");
 		} else {

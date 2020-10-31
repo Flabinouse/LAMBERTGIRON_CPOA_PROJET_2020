@@ -61,7 +61,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 
 	@Override
 	public boolean create(LigneCommande ligncom) throws SQLException, InvalidPropertiesFormatException, IOException {
-		
+
 		boolean verif = false;
 		int check = 0;
 
@@ -75,7 +75,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setDouble(4, ligncom.getTarifunit());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		if (requete != null)
@@ -101,7 +101,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setInt(4, ligncom.getIdprod());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		if (requete != null)
@@ -125,7 +125,7 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 		requete.setInt(2, ligncom.getIdprod());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		if (requete != null)
@@ -158,6 +158,20 @@ public class MySQLLigneCommandeDAO implements LigneCommandeDAO {
 
 	@Override
 	public LigneCommande getById(int id) throws Exception {
+
+		/*
+		 * int quantite = 0; double tarif = 0; int idprod = 0; LigneCommande ligncom =
+		 * null; Connection laConnexion = Connexion.getInstance().creeConnexion();
+		 * PreparedStatement requete = laConnexion.
+		 * prepareStatement("SELECT * FROM Ligne_commande where id_commande=?");
+		 * requete.setInt(1, id); ResultSet res = requete.executeQuery(); while
+		 * (res.next()) { quantite = res.getInt("quantite"); tarif =
+		 * res.getDouble("tarif_unitaire"); idprod = res.getInt("id_produit"); ligncom =
+		 * new LigneCommande(id, idprod, quantite, tarif); }
+		 * 
+		 * if (res != null) { res.close(); } if (requete != null) { requete.close(); }
+		 * if (laConnexion != null) { laConnexion.close(); } return ligncom;
+		 */
 		return null;
 	}
 }

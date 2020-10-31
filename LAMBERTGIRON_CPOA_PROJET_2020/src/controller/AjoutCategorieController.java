@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,7 @@ import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.metier.Categorie;
 
-public class AjoutCategorieController implements IAjoutModif<Categorie> {
+public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 
 	private DAOFactory dao;
 
@@ -57,6 +59,7 @@ public class AjoutCategorieController implements IAjoutModif<Categorie> {
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajout d'une Categorie");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -87,10 +90,41 @@ public class AjoutCategorieController implements IAjoutModif<Categorie> {
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Modification d'une Categorie");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
+			enumAction actionV, Categorie categV) {
+
+		try {
+
+			Parent root = (Parent) fxmlLoader.load();
+
+			AjoutCategorieController param = fxmlLoader.getController();
+			param.action = actionV;
+			param.dao = daoF;
+			param.main = mainC;
+
+			String titre = categV.getTitre();
+			String visuel = categV.getVisuel();
+
+			param.defineTF(titre, visuel);
+			param.idTextTitre.setDisable(true);
+			param.idTextVisu.setDisable(true);
+
+			stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Visualisation d'une Categorie");
+			stage.setResizable(false);
+			stage.setScene(new Scene(root));
+			stage.show();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -120,7 +154,7 @@ public class AjoutCategorieController implements IAjoutModif<Categorie> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else {
+		} else if (action == enumAction.Update) {
 			try {
 				String titre = this.idTextTitre.getText().trim();
 				String visuel = this.idTextVisu.getText().trim();
@@ -143,6 +177,9 @@ public class AjoutCategorieController implements IAjoutModif<Categorie> {
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
 
+		} else {
+			Stage stage = (Stage) idValid.getScene().getWindow();
+			stage.close();
 		}
 
 	}

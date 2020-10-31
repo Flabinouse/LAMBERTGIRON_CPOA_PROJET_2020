@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.metier.Client;
 
-public class AjoutClientController implements IAjoutModif<Client> {
+public class AjoutClientController implements IAjoutModifVisu<Client> {
 
 	private DAOFactory dao;
 
@@ -24,26 +24,26 @@ public class AjoutClientController implements IAjoutModif<Client> {
 
 	private Client cli;
 
-	public void defineTF(String nom, String prenom, String identifiant, String mdp, String numero, 
-			String rue, String postal, String ville, String pays) {
+	public void defineTF(String nom, String prenom, String identifiant, String mdp, String numero, String rue,
+			String postal, String ville, String pays) {
 
 		idTextNom.setText(nom);
 
 		idTextPrenom.setText(prenom);
-		
+
 		idTextIdent.setText(identifiant);
 
 		idTextMdp.setText(mdp);
-		
+
 		idTextNum.setText(numero);
 
 		idTextRue.setText(rue);
-		
+
 		idTextPostal.setText(postal);
 
 		idTextVille.setText(ville);
-		
-		idTextPays.setText(pays);		
+
+		idTextPays.setText(pays);
 	}
 
 	@FXML
@@ -78,7 +78,7 @@ public class AjoutClientController implements IAjoutModif<Client> {
 
 	@FXML
 	private Label idLabelAffi;
-	
+
 	@Override
 	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
 		try {
@@ -93,6 +93,7 @@ public class AjoutClientController implements IAjoutModif<Client> {
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajout d'un Client");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -101,7 +102,7 @@ public class AjoutClientController implements IAjoutModif<Client> {
 		}
 
 	}
-	
+
 	@Override
 	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionU,
 			Client cliU) {
@@ -130,6 +131,7 @@ public class AjoutClientController implements IAjoutModif<Client> {
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Modification d'un Client");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -137,7 +139,53 @@ public class AjoutClientController implements IAjoutModif<Client> {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@Override
+	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
+			enumAction actionV, Client cliV) {
+		try {
+
+			Parent root = (Parent) fxmlLoader.load();
+
+			AjoutClientController param = fxmlLoader.getController();
+			param.action = actionV;
+			param.dao = daoF;
+			param.main = mainC;
+
+			String nom = cliV.getNom();
+			String prenom = cliV.getPrenom();
+			String identifiant = cliV.getIdentifiant();
+			String mdp = cliV.getMdp();
+			String numero = cliV.getNumero();
+			String rue = cliV.getRue();
+			String postal = cliV.getPostal();
+			String ville = cliV.getVille();
+			String pays = cliV.getPays();
+
+			param.defineTF(nom, prenom, identifiant, mdp, numero, rue, postal, ville, pays);
+			param.idTextIdent.setDisable(true);
+			param.idTextMdp.setDisable(true);
+			param.idTextNom.setDisable(true);
+			param.idTextNum.setDisable(true);
+			param.idTextPays.setDisable(true);
+			param.idTextPostal.setDisable(true);
+			param.idTextPrenom.setDisable(true);
+			param.idTextRue.setDisable(true);
+			param.idTextVille.setDisable(true);
+
+			stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Visualisation d'un Client");
+			stage.setResizable(false);
+			stage.setScene(new Scene(root));
+			stage.show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@FXML
 	public void validation(ActionEvent event) throws Exception {
 		if (action == enumAction.Create) {
@@ -178,7 +226,7 @@ public class AjoutClientController implements IAjoutModif<Client> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else {
+		} else if (action == enumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
 				String prenom = this.idTextPrenom.getText().trim();
@@ -203,8 +251,8 @@ public class AjoutClientController implements IAjoutModif<Client> {
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'une categorie");
-				alert.setHeaderText("Client modifie : " + nom + " " + prenom + " " + ident + " " + mdp + " " + numero + " "
-						+ rue + " " + postal + " " + ville + " " + pays);
+				alert.setHeaderText("Client modifie : " + nom + " " + prenom + " " + ident + " " + mdp + " " + numero
+						+ " " + rue + " " + postal + " " + ville + " " + pays);
 				alert.showAndWait();
 
 				main.tableUpdate();
@@ -216,6 +264,9 @@ public class AjoutClientController implements IAjoutModif<Client> {
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
 
+		} else {
+			Stage stage = (Stage) idBoutonValider.getScene().getWindow();
+			stage.close();
 		}
 
 	}

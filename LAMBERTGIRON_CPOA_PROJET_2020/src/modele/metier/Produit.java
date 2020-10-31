@@ -91,8 +91,7 @@ public class Produit {
 
 	@Override
 	public String toString() {
-		return "Produit [id_produit=" + idproduit + ", nom=" + nom + ", description=" + description + ", tarif="
-				+ tarif + ", visuel=" + visuel + ", id_categorie=" + idcategorie + "]";
+		return nom;
 	}
 
 	@Override

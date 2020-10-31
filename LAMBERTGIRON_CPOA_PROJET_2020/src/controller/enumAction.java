@@ -1,5 +1,5 @@
 package controller;
 
 public enum enumAction {
-	Create, Update;
+	Create, Update, Visualisation;
 }

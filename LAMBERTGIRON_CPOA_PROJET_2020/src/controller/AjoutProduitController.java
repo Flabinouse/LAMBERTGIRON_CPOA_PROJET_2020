@@ -20,7 +20,7 @@ import modele.dao.factory.DAOFactory;
 import modele.metier.Categorie;
 import modele.metier.Produit;
 
-public class AjoutProduitController implements IAjoutModif<Produit> {
+public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 
 	private DAOFactory dao;
 
@@ -103,6 +103,7 @@ public class AjoutProduitController implements IAjoutModif<Produit> {
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Ajout d'un produit");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
@@ -134,13 +135,51 @@ public class AjoutProduitController implements IAjoutModif<Produit> {
 
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("Modification d'une Categorie");
+			stage.setTitle("Modification d'un produit");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
+			enumAction actionV, Produit prodV) {
+		try {
+
+			Parent root = (Parent) fxmlLoader.load();
+
+			AjoutProduitController param = fxmlLoader.getController();
+			param.action = actionV;
+			param.dao = daoF;
+			param.main = mainC;
+			param.init();
+
+			String nom = prodV.getNom();
+			String desc = prodV.getDescription();
+			Float tarif = prodV.getTarif();
+			int idcateg = prodV.getIdcategorie();
+
+			param.defineTF(nom, desc, tarif, idcateg);
+			param.idChoixCateg.setDisable(true);
+			param.idTextNom.setDisable(true);
+			param.idTextTarif.setDisable(true);
+			param.idTextDesc.setDisable(true);
+
+			stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Visualisation d'un produit");
+			stage.setResizable(false);
+			stage.setScene(new Scene(root));
+			stage.show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@FXML
@@ -175,7 +214,7 @@ public class AjoutProduitController implements IAjoutModif<Produit> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else {
+		} else if (action == enumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
 				String desc = this.idTextDesc.getText().trim();
@@ -205,6 +244,9 @@ public class AjoutProduitController implements IAjoutModif<Produit> {
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
 
+		} else {
+			Stage stage = (Stage) idBoutonValider.getScene().getWindow();
+			stage.close();
 		}
 
 	}
