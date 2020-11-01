@@ -1,5 +1,7 @@
 package controller;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,22 +32,6 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 
 	private Produit prod;
 
-	public void defineTF(String nom, String desc, Float tarif, int idcateg) throws Exception {
-
-		idTextNom.setText(nom);
-
-		idTextDesc.setText(desc);
-
-		idTextTarif.setText(String.valueOf(tarif));
-
-		for (Categorie categ : dao.getCategorieDAO().findAll()) {
-			if (categ.getIdcategorie() == idcateg) {
-				idChoixCateg.setValue(categ);
-			}
-		}
-
-	}
-
 	@FXML
 	private GridPane idGrid1;
 
@@ -71,6 +57,9 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 	private TextField idTextTarif;
 
 	@FXML
+	private TextField idTextVisuel;
+
+	@FXML
 	private TextArea idTextDesc;
 
 	@FXML
@@ -81,6 +70,24 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 
 	@FXML
 	private Label idLabelAffi;
+
+	public void defineTF(String nom, String desc, Float tarif, int idcateg, String visu) throws Exception {
+
+		idTextNom.setText(nom);
+
+		idTextDesc.setText(desc);
+
+		idTextTarif.setText(String.valueOf(tarif));
+
+		idTextVisuel.setText(visu);
+
+		for (Categorie categ : dao.getCategorieDAO().findAll()) {
+			if (categ.getIdcategorie() == idcateg) {
+				idChoixCateg.setValue(categ);
+			}
+		}
+
+	}
 
 	public void init() throws Exception {
 
@@ -130,8 +137,9 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 			String desc = prodU.getDescription();
 			Float tarif = prodU.getTarif();
 			int idcateg = prodU.getIdcategorie();
+			String visu = prodU.getVisuel();
 
-			param.defineTF(nom, desc, tarif, idcateg);
+			param.defineTF(nom, desc, tarif, idcateg, visu);
 
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -142,6 +150,16 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void verifDoublon(Produit produit) throws Exception {
+		for (Produit prod : dao.getProduitDAO().findAll()) {
+			produit.setIdproduit(prod.getIdproduit());
+			if (produit.getNom().equals(prod.getNom()) && produit.getTarif() == (prod.getTarif())
+					&& produit.getIdcategorie() == (prod.getIdcategorie())) {
+				throw new IllegalAnnotationException("Produit deja existant !");
+			}
 		}
 	}
 
@@ -162,12 +180,14 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 			String desc = prodV.getDescription();
 			Float tarif = prodV.getTarif();
 			int idcateg = prodV.getIdcategorie();
+			String visu = prodV.getVisuel();
 
-			param.defineTF(nom, desc, tarif, idcateg);
+			param.defineTF(nom, desc, tarif, idcateg, visu);
 			param.idChoixCateg.setDisable(true);
 			param.idTextNom.setDisable(true);
 			param.idTextTarif.setDisable(true);
 			param.idTextDesc.setDisable(true);
+			param.idTextVisuel.setDisable(true);
 
 			stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -190,17 +210,19 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 				Float tarif = Float.parseFloat(this.idTextTarif.getText().trim());
 
 				Produit prodA = new Produit();
-				prodA.setNom(this.idTextNom.getText().trim());
+				prodA.setNom(nom);
 				prodA.setDescription(this.idTextDesc.getText().trim());
-				prodA.setTarif(Float.parseFloat(this.idTextTarif.getText().trim()));
-				prodA.setVisuel(this.idChoixCateg.getValue().getVisuel());
+				prodA.setTarif(tarif);
+				prodA.setVisuel(this.idTextVisuel.getText().trim().toLowerCase());
 				prodA.setIdcategorie(this.idChoixCateg.getValue().getIdcategorie());
 
+				verifDoublon(prodA);
 				dao.getProduitDAO().create(prodA);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'un Produit");
-				alert.setHeaderText("Produit creer : " + nom + " coutant : " + tarif + " .€");
+				alert.setHeaderText("Produit creer : " + this.idChoixCateg.getValue().getTitre() + " nomme : " + nom
+						+ " coutant : " + tarif + " .€");
 				alert.showAndWait();
 
 				main.tableUpdate();
@@ -210,16 +232,19 @@ public class ProduitController implements IAjoutModifVisu<Produit> {
 			} catch (IllegalArgumentException e) {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
+			} catch (IllegalAnnotationException e1) {
+				this.idLabelAffi.setStyle("-fx-text-fill: red;");
+				this.idLabelAffi.setText("Ce produit existe deja !");
 			}
 		} else if (action == EnumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
 				Float tarif = Float.parseFloat(this.idTextTarif.getText().trim());
 
-				prod.setNom(this.idTextNom.getText().trim());
+				prod.setNom(nom);
 				prod.setDescription(this.idTextDesc.getText().trim());
-				prod.setTarif(Float.parseFloat(this.idTextTarif.getText().trim()));
-				prod.setVisuel(this.idChoixCateg.getValue().getVisuel());
+				prod.setTarif(tarif);
+				prod.setVisuel(this.idTextVisuel.getText().trim().toLowerCase());
 				prod.setIdcategorie(this.idChoixCateg.getValue().getIdcategorie());
 
 				dao.getProduitDAO().update(prod);

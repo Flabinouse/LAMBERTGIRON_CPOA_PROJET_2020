@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="376.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="376.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitController">
    <children>
       <GridPane fx:id="idGrid1" prefHeight="269.0" prefWidth="545.0" style="-fx-border-color: Black;">
         <columnConstraints>
@@ -52,7 +52,7 @@
                   <Font name="Calibri" size="16.0" />
                </font>
             </TextField>
-            <TextArea fx:id="idTextDesc" maxHeight="-Infinity" prefHeight="46.0" prefWidth="324.0" promptText="Ici inscrire la description du produit" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextArea fx:id="idTextDesc" maxHeight="-Infinity" prefHeight="61.0" prefWidth="404.0" promptText="Ici inscrire la description du produit" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -65,13 +65,19 @@
                   <Insets />
                </GridPane.margin>
             </ChoiceBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="414.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <TextField fx:id="idTextTarif" prefHeight="26.0" prefWidth="75.0" promptText="ex : 10.0">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font></TextField>
                   <Label fx:id="idLabelEuro" prefHeight="16.0" prefWidth="106.0" text=".€ à l'unité" />
+                  <Label text="Visuel :">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idTextVisuel" promptText="ex Pull1.png" />
                </children>
             </HBox>
          </children>

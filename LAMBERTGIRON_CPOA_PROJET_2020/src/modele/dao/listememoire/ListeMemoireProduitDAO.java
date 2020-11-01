@@ -25,13 +25,13 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 		this.donnees = new ArrayList<Produit>();
 		this.donnees.add(new Produit(2, "Sonic te kiffe",
-				"Inspiré par la saga Séga (c'est plus fort que toi !), un pull 100% gamer qui te permettra de faire baver d'envie tes petits camarades de jeu.",
+				"Inspire par la saga Sega (c'est plus fort que toi !), un pull 100% gamer qui te permettra de faire baver d'envie tes petits camarades de jeu.",
 				41, "pull1.png", 1));
 		this.donnees.add(new Produit(6, "La chaleur des rennes",
-				"Classique mais efficace, un bonnet dont l'élégance n'est pas à souligner, il vous grattera comme il faut !",
+				"Classique mais efficace, un bonnet dont l'elegance n'est pas a souligner, il vous grattera comme il faut !",
 				15, "bonnet0.png", 2));
 		this.donnees
-				.add(new Produit(12, "Dall", "Joyeux Noël avec nos petits lutins dansants !", 35, "bonnet1.png", 2));
+				.add(new Produit(12, "Dall", "Joyeux Noel avec nos petits lutins dansants !", 35, "bonnet1.png", 2));
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,13 +28,6 @@ public class CategorieController implements IAjoutModifVisu<Categorie> {
 
 	private Categorie categ;
 
-	public void defineTF(String titre, String visuel) {
-
-		idTextTitre.setText(titre);
-
-		idTextVisu.setText(visuel);
-	}
-
 	@FXML
 	private TextField idTextTitre;
 
@@ -44,6 +39,13 @@ public class CategorieController implements IAjoutModifVisu<Categorie> {
 
 	@FXML
 	private Label idLabelAffi;
+
+	public void defineTF(String titre, String visuel) {
+
+		idTextTitre.setText(titre);
+
+		idTextVisu.setText(visuel);
+	}
 
 	@Override
 	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
@@ -99,6 +101,15 @@ public class CategorieController implements IAjoutModifVisu<Categorie> {
 		}
 	}
 
+	public void verifDoublon(Categorie categ) throws Exception {
+		for (Categorie cat : dao.getCategorieDAO().findAll()) {
+			categ.setIdcategorie(cat.getIdcategorie());
+			if (categ.getTitre().equals(cat.getTitre()) && categ.getVisuel().equals(cat.getVisuel())) {
+				throw new IllegalAnnotationException("Categorie deja existante !");
+			}
+		}
+	}
+
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
 			EnumAction actionV, Categorie categV) {
 
@@ -133,11 +144,12 @@ public class CategorieController implements IAjoutModifVisu<Categorie> {
 	public void validation(ActionEvent event) throws Exception {
 		if (action == EnumAction.Create) {
 			try {
-				String titre = this.idTextTitre.getText().trim();
+				String titre = this.idTextTitre.getText().trim().toLowerCase();
 				Categorie categA = new Categorie();
-				categA.setTitre(this.idTextTitre.getText().trim());
-				categA.setVisuel(this.idTextVisu.getText().trim());
+				categA.setTitre(titre);
+				categA.setVisuel(this.idTextVisu.getText().trim().toLowerCase());
 
+				verifDoublon(categA);
 				dao.getCategorieDAO().create(categA);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -152,12 +164,15 @@ public class CategorieController implements IAjoutModifVisu<Categorie> {
 			} catch (IllegalArgumentException e) {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
+			} catch (IllegalAnnotationException e1) {
+				this.idLabelAffi.setStyle("-fx-text-fill: red;");
+				this.idLabelAffi.setText("Cette categorie existe deja !");
 			}
 		} else if (action == EnumAction.Update) {
 			try {
-				String titre = this.idTextTitre.getText().trim();
-				categ.setTitre(this.idTextTitre.getText().trim());
-				categ.setVisuel(this.idTextVisu.getText().trim());
+				String titre = this.idTextTitre.getText().trim().toLowerCase();
+				categ.setTitre(titre);
+				categ.setVisuel(this.idTextVisu.getText().trim().toLowerCase());
 
 				dao.getCategorieDAO().update(categ);
 

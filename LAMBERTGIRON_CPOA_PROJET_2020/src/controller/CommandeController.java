@@ -2,6 +2,8 @@ package controller;
 
 import java.time.LocalDate;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -221,6 +223,15 @@ public class CommandeController implements IAjoutModifVisu<Commande> {
 
 	}
 
+	public void verifDoublon(Commande commande) throws Exception {
+		for (Commande com : dao.getCommandeDAO().findAll()) {
+			commande.setIdcom(com.getIdcom());
+			if (commande.getDatecom().equals(com.getDatecom()) && commande.getIdcli() == (com.getIdcli())) {
+				throw new IllegalAnnotationException("Commande deja existante !");
+			}
+		}
+	}
+
 	@Override
 	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionU,
 			Commande comU) {
@@ -313,6 +324,7 @@ public class CommandeController implements IAjoutModifVisu<Commande> {
 				comV.setIdcli(idclient);
 				comV.setDatecom(dt);
 
+				verifDoublon(comV);
 				dao.getCommandeDAO().create(comV);
 
 				for (Commande searchcom : dao.getCommandeDAO().findAll()) {
@@ -346,6 +358,9 @@ public class CommandeController implements IAjoutModifVisu<Commande> {
 			} catch (IllegalArgumentException e) {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
+			} catch (IllegalAnnotationException e1) {
+				this.idLabelAffi.setStyle("-fx-text-fill: red;");
+				this.idLabelAffi.setText("Cette commande existe deja !");
 			}
 		} else if (action == EnumAction.Update) {
 			try {

@@ -83,6 +83,9 @@ public class MainController extends Application {
 	private Label lblTarif;
 
 	@FXML
+	private Label lblEuros;
+
+	@FXML
 	TableView<Categorie> tableCateg = new TableView<Categorie>();
 
 	@FXML
@@ -107,6 +110,9 @@ public class MainController extends Application {
 	TableColumn<Client, String> prenomClients;
 
 	@FXML
+	TableColumn<Client, String> IdentClient;
+
+	@FXML
 	TableColumn<Client, String> villeClients;
 
 	@FXML
@@ -123,9 +129,6 @@ public class MainController extends Application {
 
 	@FXML
 	TableColumn<Produit, Integer> idCategProduit;
-
-	// @FXML
-	// TableColumn<Produit, Integer> nbCom;
 
 	@FXML
 	TableView<Commande> tableCommande = new TableView<Commande>();
@@ -174,6 +177,7 @@ public class MainController extends Application {
 		this.filterTarif.setVisible(false);
 		this.filterField.setDisable(true);
 		this.effaceFilter.setDisable(true);
+		this.lblEuros.setVisible(false);
 
 		// CHOIX DE LA PERSISTANCE
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -209,9 +213,10 @@ public class MainController extends Application {
 		idClients.setCellValueFactory(new PropertyValueFactory<Client, Integer>("idclient"));
 		nomClients.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
 		prenomClients.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
+		IdentClient.setCellValueFactory(new PropertyValueFactory<Client, String>("identifiant"));
 		villeClients.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
 
-		this.tableClients.getColumns().setAll(idClients, nomClients, prenomClients, villeClients);
+		this.tableClients.getColumns().setAll(idClients, nomClients, prenomClients, IdentClient, villeClients);
 
 		// PARAMETRAGE TABLE PRODUIT
 		idProduit.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("idproduit"));
@@ -376,6 +381,7 @@ public class MainController extends Application {
 	public void affiFiltre() {
 		this.filterField.setDisable(false);
 		this.lblTarif.setVisible(true);
+		this.lblEuros.setVisible(true);
 		this.filterTarif.setVisible(true);
 	}
 
@@ -383,6 +389,7 @@ public class MainController extends Application {
 	public void dissFiltre() {
 		this.filterField.setDisable(false);
 		this.lblTarif.setVisible(false);
+		this.lblEuros.setVisible(false);
 		this.filterTarif.setVisible(false);
 	}
 
@@ -424,6 +431,9 @@ public class MainController extends Application {
 
 			break;
 		}
+		this.filterField.setText("");
+		this.filterTarif.setText("");
+		this.effaceFilter.setDisable(true);
 
 	}
 
@@ -466,6 +476,9 @@ public class MainController extends Application {
 			new CommandeController().update(fxmlLoader, dao, stage, main, action, com);
 			break;
 		}
+		this.filterField.setText("");
+		this.filterTarif.setText("");
+		this.effaceFilter.setDisable(true);
 
 	}
 
@@ -568,6 +581,10 @@ public class MainController extends Application {
 		this.detailButton.setDisable(true);
 		this.modifButton.setDisable(true);
 		this.supprButton.setDisable(true);
+		this.filterField.setText("");
+		this.filterTarif.setText("");
+		this.effaceFilter.setDisable(true);
+
 	}
 
 	@FXML

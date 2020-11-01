@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
       <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="644.0" style="-fx-border-color: black;">
          <columnConstraints>
@@ -75,7 +75,7 @@
                <font>
                   <Font name="Calibri" size="16.0" />
                </font></TextField>
-            <TextField fx:id="idTextIdent" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : 1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="idTextIdent" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : pd@ul.fr" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="16.0" />
                </font></TextField>

@@ -1,5 +1,7 @@
 package controller;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,28 +25,6 @@ public class ClientController implements IAjoutModifVisu<Client> {
 	private EnumAction action;
 
 	private Client cli;
-
-	public void defineTF(String nom, String prenom, String identifiant, String mdp, String numero, String rue,
-			String postal, String ville, String pays) {
-
-		idTextNom.setText(nom);
-
-		idTextPrenom.setText(prenom);
-
-		idTextIdent.setText(identifiant);
-
-		idTextMdp.setText(mdp);
-
-		idTextNum.setText(numero);
-
-		idTextRue.setText(rue);
-
-		idTextPostal.setText(postal);
-
-		idTextVille.setText(ville);
-
-		idTextPays.setText(pays);
-	}
 
 	@FXML
 	private TextField idTextNom;
@@ -78,6 +58,28 @@ public class ClientController implements IAjoutModifVisu<Client> {
 
 	@FXML
 	private Label idLabelAffi;
+
+	public void defineTF(String nom, String prenom, String identifiant, String mdp, String numero, String rue,
+			String postal, String ville, String pays) {
+
+		idTextNom.setText(nom);
+
+		idTextPrenom.setText(prenom);
+
+		idTextIdent.setText(identifiant);
+
+		idTextMdp.setText(mdp);
+
+		idTextNum.setText(numero);
+
+		idTextRue.setText(rue);
+
+		idTextPostal.setText(postal);
+
+		idTextVille.setText(ville);
+
+		idTextPays.setText(pays);
+	}
 
 	@Override
 	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
@@ -140,6 +142,16 @@ public class ClientController implements IAjoutModifVisu<Client> {
 		}
 	}
 
+	public void verifDoublon(Client client) throws Exception {
+		for (Client cli : dao.getClientDAO().findAll()) {
+			client.setIdclient(cli.getIdclient());
+			if (client.getNom().equals(cli.getNom()) && client.getPrenom().equals(cli.getPrenom())
+					&& client.getIdentifiant().equals(cli.getIdentifiant())) {
+				throw new IllegalAnnotationException("Client deja existant !");
+			}
+		}
+	}
+
 	@Override
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
 			EnumAction actionV, Client cliV) {
@@ -193,16 +205,17 @@ public class ClientController implements IAjoutModifVisu<Client> {
 				String nom = this.idTextNom.getText().trim().toUpperCase();
 				String prenom = this.idTextPrenom.getText().trim();
 				Client cliA = new Client();
-				cliA.setNom(this.idTextNom.getText().trim());
-				cliA.setPrenom(this.idTextPrenom.getText().trim());
+				cliA.setNom(nom);
+				cliA.setPrenom(prenom);
 				cliA.setIdentifiant(this.idTextIdent.getText().trim());
 				cliA.setMdp(this.idTextMdp.getText().trim());
 				cliA.setNumero(this.idTextNum.getText().trim());
-				cliA.setRue(this.idTextRue.getText().trim());
+				cliA.setRue(this.idTextRue.getText().trim().toLowerCase());
 				cliA.setPostal(this.idTextPostal.getText().trim());
 				cliA.setVille(this.idTextVille.getText().trim());
 				cliA.setPays(this.idTextPays.getText().trim());
 
+				verifDoublon(cliA);
 				dao.getClientDAO().create(cliA);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -217,13 +230,16 @@ public class ClientController implements IAjoutModifVisu<Client> {
 			} catch (IllegalArgumentException e) {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
+			} catch (IllegalAnnotationException e1) {
+				this.idLabelAffi.setStyle("-fx-text-fill: red;");
+				this.idLabelAffi.setText("Ce client existe deja !");
 			}
 		} else if (action == EnumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
 				String prenom = this.idTextPrenom.getText().trim();
-				cli.setNom(this.idTextNom.getText().trim());
-				cli.setPrenom(this.idTextPrenom.getText().trim());
+				cli.setNom(nom);
+				cli.setPrenom(prenom);
 				cli.setIdentifiant(this.idTextIdent.getText().trim());
 				cli.setMdp(this.idTextMdp.getText().trim());
 				cli.setNumero(this.idTextNum.getText().trim());

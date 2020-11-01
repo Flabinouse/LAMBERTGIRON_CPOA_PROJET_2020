@@ -27,6 +27,8 @@ public class ListeMemoireLigneCommandeDAO implements LigneCommandeDAO {
 		this.donnees.add(new LigneCommande(1, 2, 2, 41.5));
 		this.donnees.add(new LigneCommande(1, 6, 1, 15));
 		this.donnees.add(new LigneCommande(2, 12, 4, 35));
+		this.donnees.add(new LigneCommande(3, 2, 4, 30));
+		this.donnees.add(new LigneCommande(4, 6, 4, 45));
 	}
 
 	@Override
