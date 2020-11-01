@@ -7,6 +7,8 @@ import java.util.Optional;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +19,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -57,6 +61,15 @@ public class MainController extends Application {
 
 	@FXML
 	private TabPane tabpane;
+
+	@FXML
+	private TextField filterField;
+
+	@FXML
+	private TextField filterTarif;
+
+	@FXML
+	private Label lblTarif;
 
 	@FXML
 	TableView<Categorie> tableCateg = new TableView<Categorie>();
@@ -122,7 +135,7 @@ public class MainController extends Application {
 			URL fxmlURL = getClass().getResource("/fxml/Main.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
-			Scene scene = new Scene((VBox) root, 755.0, 475.0);
+			Scene scene = new Scene((VBox) root, 755.0, 518.0);
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setScene(scene);
@@ -146,7 +159,11 @@ public class MainController extends Application {
 		this.detailButton.setDisable(true);
 		this.modifButton.setDisable(true);
 		this.supprButton.setDisable(true);
+		this.lblTarif.setVisible(false);
+		this.filterTarif.setVisible(false);
+		this.filterField.setDisable(true);
 
+		// CHOIX DE LA PERSISTANCE
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Logiciel de gestion de pulls de noel");
 		alert.setHeaderText("Bienvenue");
@@ -169,29 +186,30 @@ public class MainController extends Application {
 			alert.close();
 		}
 
+		// PARAMETRAGE TABLE CATEGORIE
 		IDCateg.setCellValueFactory(new PropertyValueFactory<Categorie, Integer>("idcategorie"));
 		TitreCateg.setCellValueFactory(new PropertyValueFactory<Categorie, String>("titre"));
 		VisuCateg.setCellValueFactory(new PropertyValueFactory<Categorie, String>("visuel"));
 
 		this.tableCateg.getColumns().setAll(IDCateg, TitreCateg, VisuCateg);
-		// this.tableCateg.getItems().addAll(dao.getCategorieDAO().findAll());
 
+		// PARAMETRAGE TABLE CLIENT
 		idClients.setCellValueFactory(new PropertyValueFactory<Client, Integer>("idclient"));
 		nomClients.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
 		prenomClients.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
 		villeClients.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
 
 		this.tableClients.getColumns().setAll(idClients, nomClients, prenomClients, villeClients);
-		// this.tableClients.getItems().addAll(dao.getClientDAO().findAll());
 
+		// PARAMETRAGE TABLE PRODUIT
 		idProduit.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("idproduit"));
 		nomProduit.setCellValueFactory(new PropertyValueFactory<Produit, String>("nom"));
 		tarifProduit.setCellValueFactory(new PropertyValueFactory<Produit, Float>("tarif"));
 		idCategProduit.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("idcategorie"));
 
 		this.tableProduit.getColumns().setAll(idProduit, nomProduit, tarifProduit, idCategProduit);
-		// this.tableProduit.getItems().addAll(dao.getProduitDAO().findAll());
 
+		// PARAMETRAGE TABLE COMMANDE
 		idCommande.setCellValueFactory(new PropertyValueFactory<Commande, Integer>("idcom"));
 		dateCommande.setCellValueFactory(new PropertyValueFactory<Commande, LocalDate>("datecom"));
 		idClient.setCellValueFactory(new PropertyValueFactory<Commande, Integer>("idcli"));
@@ -202,11 +220,99 @@ public class MainController extends Application {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void tableUpdate() throws Exception {
+
+		// AFFICHAGE TABLE CATEGORIE
 		this.tableCateg.getItems().setAll(dao.getCategorieDAO().findAll());
-		this.tableClients.getItems().setAll(dao.getClientDAO().findAll());
-		this.tableProduit.getItems().setAll(dao.getProduitDAO().findAll());
-		this.tableCommande.getItems().setAll(dao.getCommandeDAO().findAll());
+
+		// AFFICHAGE TABLE CLIENT + FILTRAGE
+		ObservableList<Client> dataListCli = FXCollections.observableArrayList();
+		dataListCli.addAll(dao.getClientDAO().findAll());
+		FilteredList<Client> filteredDataCli = new FilteredList<>(dataListCli, b -> true);
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredDataCli.setPredicate(Client -> {
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				String lowerCaseFilter = newValue.toLowerCase();
+				if (Client.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (Client.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1)
+					return true;
+				else
+					return false;
+			});
+		});
+
+		SortedList<Client> sortedDataCli = new SortedList<>(filteredDataCli);
+		sortedDataCli.comparatorProperty().bind(tableClients.comparatorProperty());
+		this.tableClients.setItems(sortedDataCli);
+		this.tableClients.getSortOrder().addAll(nomClients);
+
+		// AFFICHAGE TABLE PRODUIT + FILTRAGE
+		ObservableList<Produit> dataListProd = FXCollections.observableArrayList();
+		dataListProd.addAll(dao.getProduitDAO().findAll());
+		FilteredList<Produit> filteredDataProd = new FilteredList<>(dataListProd, b -> true);
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredDataProd.setPredicate(Produit -> {
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				String lowerCaseFilter = newValue.toLowerCase();
+				if (Produit.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (String.valueOf(Produit.getIdcategorie()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else
+					return false;
+			});
+		});
+
+		filterTarif.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredDataProd.setPredicate(Produit -> {
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				if (Produit.getTarif() < Float.valueOf(newValue)) {
+					return true;
+				} else
+					return false;
+			});
+		});
+
+		SortedList<Produit> sortedDataProd = new SortedList<>(filteredDataProd);
+		sortedDataProd.comparatorProperty().bind(tableProduit.comparatorProperty());
+		this.tableProduit.setItems(sortedDataProd);
+
+		// AFFICHAGE TABLE COMMANDE + FILTRAGE
+		ObservableList<Commande> dataListCom = FXCollections.observableArrayList();
+		dataListCom.addAll(dao.getCommandeDAO().findAll());
+		FilteredList<Commande> filteredDataCom = new FilteredList<>(dataListCom, b -> true);
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredDataCom.setPredicate(Commande -> {
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				String lowerCaseFilter = newValue.toLowerCase();
+				if (String.valueOf(Commande.getIdcli()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else
+					return false;
+			});
+		});
+
+		SortedList<Commande> sortedDataCom = new SortedList<>(filteredDataCom);
+		sortedDataCom.comparatorProperty().bind(tableCommande.comparatorProperty());
+		this.tableCommande.setItems(sortedDataCom);
 	}
 
 	@FXML
@@ -251,7 +357,20 @@ public class MainController extends Application {
 	}
 
 	@FXML
-	public void creerCateg(ActionEvent event) throws Exception {
+	public void affiFiltre() {
+		this.lblTarif.setVisible(true);
+		this.filterTarif.setVisible(true);
+	}
+
+	@FXML
+	public void dissFiltre() {
+		this.filterField.setDisable(false);
+		this.lblTarif.setVisible(false);
+		this.filterTarif.setVisible(false);
+	}
+
+	@FXML
+	public void creer(ActionEvent event) throws Exception {
 
 		int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
@@ -292,7 +411,7 @@ public class MainController extends Application {
 	}
 
 	@FXML
-	public void modifCateg(ActionEvent event) throws Exception {
+	public void modif(ActionEvent event) throws Exception {
 
 		int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
@@ -334,7 +453,7 @@ public class MainController extends Application {
 	}
 
 	@FXML
-	public void supprCateg(ActionEvent event) throws Exception {
+	public void suppr(ActionEvent event) throws Exception {
 
 		int idTab = tabpane.getSelectionModel().getSelectedIndex();
 
@@ -435,7 +554,7 @@ public class MainController extends Application {
 	}
 
 	@FXML
-	public void closeCateg(ActionEvent event) throws Exception {
+	public void close(ActionEvent event) throws Exception {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}

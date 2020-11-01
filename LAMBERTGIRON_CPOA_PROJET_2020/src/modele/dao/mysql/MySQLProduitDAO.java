@@ -80,14 +80,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setInt(5, prod.getIdcategorie());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		ResultSet res = requete.getGeneratedKeys();
 
 		if (res.next()) {
 			int id = res.getInt(1);
-			prod.setId_produit(id);
+			prod.setIdproduit(id);
 		}
 
 		if (requete != null)
@@ -115,7 +115,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setInt(6, prod.getIdproduit());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		if (requete != null)
@@ -137,7 +137,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 		requete.setInt(1, prod.getIdproduit());
 		requete.executeUpdate();
 
-		if(check == 0)
+		if (check == 0)
 			verif = true;
 
 		if (requete != null)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -18,13 +19,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#deselectParam" prefHeight="535.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutCommandeController">
    <children>
       <GridPane prefHeight="277.0" prefWidth="600.0">
         <columnConstraints>
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="155.0" />
-          <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="281.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="164.0" />
+          <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="271.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="165.0" />
         </columnConstraints>
         <rowConstraints>
@@ -52,22 +52,10 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <children>
-                  <Label text="Prix Total :" />
-                  <Label fx:id="lblPrixTotal" text="res">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text=".€">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Label text="Liste des produits :" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="31.0" prefWidth="186.0" text="Liste des produits commandés :" textAlignment="CENTER" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets right="-20.0" />
+               </GridPane.margin></Label>
             <DatePicker fx:id="dtCom" prefHeight="25.0" prefWidth="281.0" GridPane.columnIndex="1" />
             <ChoiceBox fx:id="choixClient" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="choixProduit" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />

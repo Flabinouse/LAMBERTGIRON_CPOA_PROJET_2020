@@ -37,11 +37,11 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public boolean create(Produit prod) {
 
-		prod.setId_produit(13);
+		prod.setIdproduit(13);
 
 		while (this.donnees.contains(prod)) {
 
-			prod.setId_produit(prod.getIdproduit() + 1);
+			prod.setIdproduit(prod.getIdproduit() + 1);
 		}
 		boolean ok = this.donnees.add(prod);
 

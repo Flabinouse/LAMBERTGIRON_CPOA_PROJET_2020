@@ -79,9 +79,6 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 	TableColumn<LigneCommande, Integer> tarifUnit;
 
 	@FXML
-	private Label lblPrixTotal;
-
-	@FXML
 	private Label idLabelAffi;
 
 	public void defineTF(LocalDate dt, int idclient) throws Exception {
