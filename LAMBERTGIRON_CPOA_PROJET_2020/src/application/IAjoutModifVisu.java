@@ -1,4 +1,4 @@
-package controller;
+package application;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

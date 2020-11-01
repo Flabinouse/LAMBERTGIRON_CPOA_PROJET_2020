@@ -1,4 +1,4 @@
-package controller;
+package application;
 
 import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
