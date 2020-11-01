@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,54 +9,128 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
-      <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="740.0">
+      <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="644.0" style="-fx-border-color: black;">
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Nom :" GridPane.rowIndex="1" />
-            <Label text="Prenom :" GridPane.rowIndex="2" />
-            <Label text="Identifiant :" GridPane.rowIndex="3" />
-            <Label text="Mot de passe :" GridPane.rowIndex="4" />
-            <Label text="Numero de rue :" GridPane.rowIndex="5" />
-            <Label text="Nom de rue :" GridPane.rowIndex="6" />
-            <Label text="Code postal :" GridPane.rowIndex="7" />
-            <Label text="Ville :" GridPane.rowIndex="8" />
-            <Label text="Pays :" GridPane.rowIndex="9" />
-            <TextField fx:id="idTextNom" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="idTextPrenom" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="idTextIdent" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="idTextMdp" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="idTextNum" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="idTextRue" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="idTextPostal" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="idTextVille" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="idTextPays" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label text="Nom :" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Prenom :" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Identifiant :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Mot de passe :" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Numero de rue :" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Nom de rue :" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Code postal :" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Ville :" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <Label text="Pays :" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Label>
+            <TextField fx:id="idTextNom" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="160.0" promptText="ex : Dupuit" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextPrenom" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : Paul" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextIdent" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : 1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextMdp" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : toto" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextNum" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : 3" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="idTextRue" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : rue des etudiants" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextPostal" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : 57000" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextVille" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : Metz" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="idTextPays" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="ex : France" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></TextField>
+            <Label text="Adresse :" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Renseignement :">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
          </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="40.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </padding>
       </GridPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="63.0" prefWidth="740.0">
          <children>
-            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#validation" text="Valider" />
+            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#validation" text="Valider">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Button>
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="740.0">
+      <FlowPane alignment="CENTER" prefHeight="31.0" prefWidth="740.0">
          <children>
             <Label fx:id="idLabelAffi" />
          </children>

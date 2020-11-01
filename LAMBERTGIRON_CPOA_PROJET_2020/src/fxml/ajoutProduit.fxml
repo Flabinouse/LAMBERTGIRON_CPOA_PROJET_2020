@@ -12,34 +12,53 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="315.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="376.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitController">
    <children>
-      <GridPane fx:id="idGrid1" prefHeight="211.0" prefWidth="545.0" style="-fx-border-color: Black;">
+      <GridPane fx:id="idGrid1" prefHeight="269.0" prefWidth="545.0" style="-fx-border-color: Black;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="129.0" />
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="414.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" maxHeight="100.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints fillHeight="false" maxHeight="100.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="idLabelNom" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="115.0" text="Nom :" textAlignment="RIGHT" textOverrun="CLIP" />
-            <Label fx:id="idLabelDesc" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="114.0" text="Description :" GridPane.rowIndex="1" />
-            <Label fx:id="idLabelTarif" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="115.0" text="Tarif :" GridPane.rowIndex="2" />
-            <Label fx:id="idLabelCateg" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="114.0" text="Categorie :" GridPane.rowIndex="3" />
-            <TextField fx:id="idTextNom" prefHeight="26.0" prefWidth="196.0" GridPane.columnIndex="1">
+            <Label fx:id="idLabelNom" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="115.0" text="Nom :" textAlignment="RIGHT" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font></Label>
+            <Label fx:id="idLabelDesc" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="114.0" text="Description :" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font></Label>
+            <Label fx:id="idLabelTarif" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="115.0" text="Tarif :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font></Label>
+            <Label fx:id="idLabelCateg" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="114.0" text="Categorie :" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font></Label>
+            <TextField fx:id="idTextNom" prefHeight="26.0" prefWidth="196.0" promptText="ex : Sonic te kiffe" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
             </TextField>
-            <TextArea fx:id="idTextDesc" prefHeight="53.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextArea fx:id="idTextDesc" maxHeight="-Infinity" prefHeight="46.0" prefWidth="324.0" promptText="Ici inscrire la description du produit" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
             </TextArea>
             <ChoiceBox fx:id="idChoixCateg" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
@@ -48,21 +67,27 @@
             </ChoiceBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <TextField fx:id="idTextTarif" prefHeight="26.0" prefWidth="75.0" />
+                  <TextField fx:id="idTextTarif" prefHeight="26.0" prefWidth="75.0" promptText="ex : 10.0">
+                     <font>
+                        <Font name="Calibri" size="16.0" />
+                     </font></TextField>
                   <Label fx:id="idLabelEuro" prefHeight="16.0" prefWidth="106.0" text=".€ à l'unité" />
                </children>
             </HBox>
          </children>
          <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="35.0" />
          </VBox.margin>
       </GridPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="54.0" prefWidth="613.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="61.0" prefWidth="613.0">
          <children>
-            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#validation" text="Valider" />
+            <Button fx:id="idBoutonValider" mnemonicParsing="false" onAction="#validation" text="Valider">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></Button>
          </children>
       </FlowPane>
-      <FlowPane alignment="TOP_CENTER" prefHeight="40.0" prefWidth="640.0">
+      <FlowPane alignment="TOP_CENTER" prefHeight="54.0" prefWidth="613.0">
          <children>
             <Label fx:id="idLabelAffi" />
          </children>
