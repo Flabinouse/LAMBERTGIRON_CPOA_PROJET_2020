@@ -26,13 +26,13 @@ import modele.metier.Commande;
 import modele.metier.LigneCommande;
 import modele.metier.Produit;
 
-public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
+public class CommandeController implements IAjoutModifVisu<Commande> {
 
 	private DAOFactory dao;
 
 	private MainController main;
 
-	private enumAction action;
+	private EnumAction action;
 
 	private Commande com;
 
@@ -193,13 +193,13 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 	}
 
 	@Override
-	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
+	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
 
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCommandeController param = fxmlLoader.getController();
+			CommandeController param = fxmlLoader.getController();
 			param.action = actionC;
 			param.dao = daoF;
 			param.main = mainC;
@@ -222,13 +222,13 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 	}
 
 	@Override
-	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionU,
+	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionU,
 			Commande comU) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCommandeController param = fxmlLoader.getController();
+			CommandeController param = fxmlLoader.getController();
 			param.action = actionU;
 			param.dao = daoF;
 			param.main = mainC;
@@ -259,12 +259,12 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 
 	@Override
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction actionV, Commande comV) {
+			EnumAction actionV, Commande comV) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCommandeController param = fxmlLoader.getController();
+			CommandeController param = fxmlLoader.getController();
 			param.action = actionV;
 			param.dao = daoF;
 			param.main = mainC;
@@ -302,8 +302,11 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 
 	@FXML
 	public void validation(ActionEvent event) throws Exception {
-		if (action == enumAction.Create) {
+		if (action == EnumAction.Create) {
 			try {
+				if (this.choixClient.getValue() == null) {
+					throw new IllegalArgumentException("Client non saisie !");
+				}
 				int idclient = this.choixClient.getValue().getIdclient();
 				LocalDate dt = this.dtCom.getValue();
 				Commande comV = new Commande();
@@ -344,7 +347,7 @@ public class AjoutCommandeController implements IAjoutModifVisu<Commande> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else if (action == enumAction.Update) {
+		} else if (action == EnumAction.Update) {
 			try {
 				int idclient = this.choixClient.getValue().getIdclient();
 				LocalDate dt = this.dtCom.getValue();

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="315.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutProduitController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="315.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitController">
    <children>
       <GridPane fx:id="idGrid1" prefHeight="211.0" prefWidth="545.0" style="-fx-border-color: Black;">
         <columnConstraints>

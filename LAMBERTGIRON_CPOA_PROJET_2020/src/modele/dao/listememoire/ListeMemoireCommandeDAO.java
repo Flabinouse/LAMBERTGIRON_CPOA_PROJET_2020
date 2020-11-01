@@ -28,13 +28,15 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 		this.donnees = new ArrayList<Commande>();
 		this.donnees.add(new Commande(1, dt, 1));
-		this.donnees.add(new Commande(2, dt, 1));
+		this.donnees.add(new Commande(2, dt, 2));
+		this.donnees.add(new Commande(3, dt, 3));
+		this.donnees.add(new Commande(4, dt, 3));
 	}
 
 	@Override
 	public boolean create(Commande com) {
 
-		com.setIdcom(3);
+		com.setIdcom(5);
 
 		while (this.donnees.contains(com)) {
 

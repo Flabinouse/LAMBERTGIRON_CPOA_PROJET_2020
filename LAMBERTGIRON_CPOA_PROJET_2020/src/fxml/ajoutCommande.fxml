@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#deselectParam" prefHeight="535.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutCommandeController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#deselectParam" prefHeight="535.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommandeController">
    <children>
-      <GridPane prefHeight="277.0" prefWidth="600.0">
+      <GridPane prefHeight="277.0" prefWidth="600.0" style="-fx-border-color: Black;">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="164.0" />
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="271.0" />

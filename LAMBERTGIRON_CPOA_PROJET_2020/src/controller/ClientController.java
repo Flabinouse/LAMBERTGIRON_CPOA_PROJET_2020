@@ -14,13 +14,13 @@ import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.metier.Client;
 
-public class AjoutClientController implements IAjoutModifVisu<Client> {
+public class ClientController implements IAjoutModifVisu<Client> {
 
 	private DAOFactory dao;
 
 	private MainController main;
 
-	private enumAction action;
+	private EnumAction action;
 
 	private Client cli;
 
@@ -80,12 +80,12 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 	private Label idLabelAffi;
 
 	@Override
-	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
+	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutClientController param = fxmlLoader.getController();
+			ClientController param = fxmlLoader.getController();
 			param.action = actionC;
 			param.dao = daoF;
 			param.main = mainC;
@@ -104,13 +104,13 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 	}
 
 	@Override
-	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionU,
+	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionU,
 			Client cliU) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutClientController param = fxmlLoader.getController();
+			ClientController param = fxmlLoader.getController();
 			param.action = actionU;
 			param.dao = daoF;
 			param.main = mainC;
@@ -142,12 +142,12 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 
 	@Override
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction actionV, Client cliV) {
+			EnumAction actionV, Client cliV) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutClientController param = fxmlLoader.getController();
+			ClientController param = fxmlLoader.getController();
 			param.action = actionV;
 			param.dao = daoF;
 			param.main = mainC;
@@ -188,17 +188,10 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 
 	@FXML
 	public void validation(ActionEvent event) throws Exception {
-		if (action == enumAction.Create) {
+		if (action == EnumAction.Create) {
 			try {
-				String nom = this.idTextNom.getText().trim();
+				String nom = this.idTextNom.getText().trim().toUpperCase();
 				String prenom = this.idTextPrenom.getText().trim();
-				String ident = this.idTextIdent.getText().trim();
-				String mdp = this.idTextMdp.getText().trim();
-				String numero = this.idTextNum.getText().trim();
-				String rue = this.idTextRue.getText().trim();
-				String postal = this.idTextPostal.getText().trim();
-				String ville = this.idTextVille.getText().trim();
-				String pays = this.idTextPays.getText().trim();
 				Client cliA = new Client();
 				cliA.setNom(this.idTextNom.getText().trim());
 				cliA.setPrenom(this.idTextPrenom.getText().trim());
@@ -214,8 +207,7 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'un Client");
-				alert.setHeaderText("Client cree : " + nom + " " + prenom + " " + ident + " " + mdp + " " + numero + " "
-						+ rue + " " + postal + " " + ville + " " + pays);
+				alert.setHeaderText("Client creer : " + nom + " " + prenom);
 				alert.showAndWait();
 
 				main.tableUpdate();
@@ -226,17 +218,10 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else if (action == enumAction.Update) {
+		} else if (action == EnumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
 				String prenom = this.idTextPrenom.getText().trim();
-				String ident = this.idTextIdent.getText().trim();
-				String mdp = this.idTextMdp.getText().trim();
-				String numero = this.idTextNum.getText().trim();
-				String rue = this.idTextRue.getText().trim();
-				String postal = this.idTextPostal.getText().trim();
-				String ville = this.idTextVille.getText().trim();
-				String pays = this.idTextPays.getText().trim();
 				cli.setNom(this.idTextNom.getText().trim());
 				cli.setPrenom(this.idTextPrenom.getText().trim());
 				cli.setIdentifiant(this.idTextIdent.getText().trim());
@@ -250,9 +235,8 @@ public class AjoutClientController implements IAjoutModifVisu<Client> {
 				dao.getClientDAO().update(cli);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Ajout d'une categorie");
-				alert.setHeaderText("Client modifie : " + nom + " " + prenom + " " + ident + " " + mdp + " " + numero
-						+ " " + rue + " " + postal + " " + ville + " " + pays);
+				alert.setTitle("modification d'un client");
+				alert.setHeaderText("Client modifier : " + nom + " " + prenom);
 				alert.showAndWait();
 
 				main.tableUpdate();

@@ -7,12 +7,12 @@ import modele.dao.factory.DAOFactory;
 public interface IAjoutModifVisu<T> {
 
 	public abstract void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction action);
+			EnumAction action);
 
 	public abstract void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction action, T objet);
+			EnumAction action, T objet);
 
 	public abstract void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction action, T objet);
+			EnumAction action, T objet);
 
 }

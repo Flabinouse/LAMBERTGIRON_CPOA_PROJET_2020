@@ -1,5 +1,5 @@
 package controller;
 
-public enum enumAction {
+public enum EnumAction {
 	Create, Update, Visualisation;
 }

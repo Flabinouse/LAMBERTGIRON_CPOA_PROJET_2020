@@ -20,13 +20,13 @@ import modele.dao.factory.DAOFactory;
 import modele.metier.Categorie;
 import modele.metier.Produit;
 
-public class AjoutProduitController implements IAjoutModifVisu<Produit> {
+public class ProduitController implements IAjoutModifVisu<Produit> {
 
 	private DAOFactory dao;
 
 	private MainController main;
 
-	private enumAction action;
+	private EnumAction action;
 
 	private Produit prod;
 
@@ -89,12 +89,12 @@ public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 	}
 
 	@Override
-	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
+	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutProduitController param = fxmlLoader.getController();
+			ProduitController param = fxmlLoader.getController();
 			param.action = actionC;
 			param.dao = daoF;
 			param.main = mainC;
@@ -113,13 +113,13 @@ public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 	}
 
 	@Override
-	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionU,
+	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionU,
 			Produit prodU) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutProduitController param = fxmlLoader.getController();
+			ProduitController param = fxmlLoader.getController();
 			param.action = actionU;
 			param.dao = daoF;
 			param.main = mainC;
@@ -147,12 +147,12 @@ public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 
 	@Override
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction actionV, Produit prodV) {
+			EnumAction actionV, Produit prodV) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutProduitController param = fxmlLoader.getController();
+			ProduitController param = fxmlLoader.getController();
 			param.action = actionV;
 			param.dao = daoF;
 			param.main = mainC;
@@ -184,26 +184,23 @@ public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 
 	@FXML
 	public void validation(ActionEvent event) throws Exception {
-		if (action == enumAction.Create) {
+		if (action == EnumAction.Create) {
 			try {
 				String nom = this.idTextNom.getText().trim();
-				String desc = this.idTextDesc.getText().trim();
 				Float tarif = Float.parseFloat(this.idTextTarif.getText().trim());
-				String visuel = this.idChoixCateg.getValue().getVisuel();
-				int idcateg = this.idChoixCateg.getValue().getIdcategorie();
 
 				Produit prodA = new Produit();
-				prodA.setNom(nom);
-				prodA.setDescription(desc);
-				prodA.setTarif(tarif);
-				prodA.setVisuel(visuel);
-				prodA.setIdcategorie(idcateg);
+				prodA.setNom(this.idTextNom.getText().trim());
+				prodA.setDescription(this.idTextDesc.getText().trim());
+				prodA.setTarif(Float.parseFloat(this.idTextTarif.getText().trim()));
+				prodA.setVisuel(this.idChoixCateg.getValue().getVisuel());
+				prodA.setIdcategorie(this.idChoixCateg.getValue().getIdcategorie());
 
 				dao.getProduitDAO().create(prodA);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'un Produit");
-				alert.setHeaderText("Produit creer : " + nom + " " + tarif + " " + idcateg);
+				alert.setHeaderText("Produit creer : " + nom + " coutant : " + tarif + " .€");
 				alert.showAndWait();
 
 				main.tableUpdate();
@@ -214,25 +211,22 @@ public class AjoutProduitController implements IAjoutModifVisu<Produit> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else if (action == enumAction.Update) {
+		} else if (action == EnumAction.Update) {
 			try {
 				String nom = this.idTextNom.getText().trim();
-				String desc = this.idTextDesc.getText().trim();
 				Float tarif = Float.parseFloat(this.idTextTarif.getText().trim());
-				String visuel = this.idChoixCateg.getValue().getVisuel();
-				int idcateg = this.idChoixCateg.getValue().getIdcategorie();
 
-				prod.setNom(nom);
-				prod.setDescription(desc);
-				prod.setTarif(tarif);
-				prod.setVisuel(visuel);
-				prod.setIdcategorie(idcateg);
+				prod.setNom(this.idTextNom.getText().trim());
+				prod.setDescription(this.idTextDesc.getText().trim());
+				prod.setTarif(Float.parseFloat(this.idTextTarif.getText().trim()));
+				prod.setVisuel(this.idChoixCateg.getValue().getVisuel());
+				prod.setIdcategorie(this.idChoixCateg.getValue().getIdcategorie());
 
 				dao.getProduitDAO().update(prod);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Ajout d'une categorie");
-				alert.setHeaderText("Categorie modifier : " + nom + " " + tarif + " " + idcateg);
+				alert.setTitle("Ajout d'un produit");
+				alert.setHeaderText("Produit modifier : " + nom + " coutant : " + tarif + " .€");
 				alert.showAndWait();
 
 				main.tableUpdate();

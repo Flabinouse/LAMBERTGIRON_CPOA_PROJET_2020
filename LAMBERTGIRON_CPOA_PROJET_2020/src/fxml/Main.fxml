@@ -124,7 +124,7 @@
                                     <Button fx:id="modifButton" alignment="CENTER" mnemonicParsing="false" onAction="#modif" prefHeight="26.0" prefWidth="292.0" text="Modification" />
                                     <Button fx:id="supprButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#suppr" prefHeight="26.0" prefWidth="224.0" text="Supprimer" />
                                     <Button fx:id="detailButton" mnemonicParsing="false" onAction="#detailSelect" prefHeight="25.0" prefWidth="210.0" text="Détails" />
-                                    <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#close" prefHeight="26.0" prefWidth="198.0" text="Fermer" />
+                                    <Button fx:id="detailComButton" mnemonicParsing="false" onAction="#detailComCli" prefHeight="25.0" prefWidth="174.0" text="Détails Commande" />
                                  </children>
                               </VBox>
                            </children>
@@ -135,10 +135,12 @@
                <bottom>
                   <Pane prefHeight="72.0" prefWidth="754.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="filterField" layoutX="77.0" layoutY="24.0" prefHeight="25.0" prefWidth="223.0" />
+                        <TextField fx:id="filterField" layoutX="77.0" layoutY="24.0" onKeyPressed="#changeEtatButton" prefHeight="25.0" prefWidth="223.0" />
                         <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="28.0" prefHeight="17.0" prefWidth="63.0" text="Recherche :" textAlignment="RIGHT" />
                         <Label fx:id="lblTarif" layoutX="314.0" layoutY="28.0" text="Tarif &lt; " />
-                        <TextField fx:id="filterTarif" layoutX="352.0" layoutY="24.0" prefHeight="25.0" prefWidth="49.0" />
+                        <TextField fx:id="filterTarif" layoutX="352.0" layoutY="24.0" onKeyPressed="#changeEtatButton" prefHeight="25.0" prefWidth="49.0" />
+                        <Button fx:id="closeButton" alignment="CENTER" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#close" prefHeight="26.0" prefWidth="70.0" text="Fermer" />
+                        <Button fx:id="effaceFilter" layoutX="488.0" layoutY="25.0" mnemonicParsing="false" onAction="#effaceFiltre" prefHeight="25.0" prefWidth="79.0" text="Effacer" />
                      </children>
                   </Pane>
                </bottom>

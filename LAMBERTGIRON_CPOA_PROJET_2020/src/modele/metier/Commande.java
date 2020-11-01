@@ -31,7 +31,10 @@ public class Commande {
 	}
 
 	public void setDatecom(LocalDate datecom) {
-		this.datecom = datecom;
+		if (datecom == null) {
+			throw new IllegalArgumentException("La date est null !");
+		} else
+			this.datecom = datecom;
 	}
 
 	public int getIdcli() {

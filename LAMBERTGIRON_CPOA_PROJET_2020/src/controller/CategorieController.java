@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 import modele.dao.factory.DAOFactory;
 import modele.metier.Categorie;
 
-public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
+public class CategorieController implements IAjoutModifVisu<Categorie> {
 
 	private DAOFactory dao;
 
 	private MainController main;
 
-	private enumAction action;
+	private EnumAction action;
 
 	private Categorie categ;
 
@@ -46,12 +46,12 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 	private Label idLabelAffi;
 
 	@Override
-	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionC) {
+	public void create(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionC) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCategorieController param = fxmlLoader.getController();
+			CategorieController param = fxmlLoader.getController();
 			param.action = actionC;
 			param.dao = daoF;
 			param.main = mainC;
@@ -70,13 +70,13 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 	}
 
 	@Override
-	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, enumAction actionU,
+	public void update(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC, EnumAction actionU,
 			Categorie categU) {
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCategorieController param = fxmlLoader.getController();
+			CategorieController param = fxmlLoader.getController();
 			param.action = actionU;
 			param.dao = daoF;
 			param.main = mainC;
@@ -100,13 +100,13 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 	}
 
 	public void visualisation(FXMLLoader fxmlLoader, DAOFactory daoF, Stage stage, MainController mainC,
-			enumAction actionV, Categorie categV) {
+			EnumAction actionV, Categorie categV) {
 
 		try {
 
 			Parent root = (Parent) fxmlLoader.load();
 
-			AjoutCategorieController param = fxmlLoader.getController();
+			CategorieController param = fxmlLoader.getController();
 			param.action = actionV;
 			param.dao = daoF;
 			param.main = mainC;
@@ -131,10 +131,9 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 
 	@FXML
 	public void validation(ActionEvent event) throws Exception {
-		if (action == enumAction.Create) {
+		if (action == EnumAction.Create) {
 			try {
 				String titre = this.idTextTitre.getText().trim();
-				String visuel = this.idTextVisu.getText().trim();
 				Categorie categA = new Categorie();
 				categA.setTitre(this.idTextTitre.getText().trim());
 				categA.setVisuel(this.idTextVisu.getText().trim());
@@ -143,7 +142,7 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'une categorie");
-				alert.setHeaderText("Categorie creer : " + titre + " " + visuel);
+				alert.setHeaderText("Categorie creer : " + titre);
 				alert.showAndWait();
 
 				main.tableUpdate();
@@ -154,10 +153,9 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 				this.idLabelAffi.setStyle("-fx-text-fill: red;");
 				this.idLabelAffi.setText("Veuillez saisir tous les champs");
 			}
-		} else if (action == enumAction.Update) {
+		} else if (action == EnumAction.Update) {
 			try {
 				String titre = this.idTextTitre.getText().trim();
-				String visuel = this.idTextVisu.getText().trim();
 				categ.setTitre(this.idTextTitre.getText().trim());
 				categ.setVisuel(this.idTextVisu.getText().trim());
 
@@ -165,7 +163,7 @@ public class AjoutCategorieController implements IAjoutModifVisu<Categorie> {
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Ajout d'une categorie");
-				alert.setHeaderText("Categorie modifier : " + titre + " " + visuel);
+				alert.setHeaderText("Categorie modifier : " + titre);
 				alert.showAndWait();
 
 				main.tableUpdate();

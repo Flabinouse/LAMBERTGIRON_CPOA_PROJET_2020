@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,13 +56,22 @@ public class MainController extends Application {
 	private Button detailButton;
 
 	@FXML
-	private ChoiceBox<String> choixPers;
+	private Button detailComButton;
 
 	@FXML
 	private Button validPers;
 
 	@FXML
+	private Button effaceFilter;
+
+	@FXML
+	private ChoiceBox<String> choixPers;
+
+	@FXML
 	private TabPane tabpane;
+
+	@FXML
+	private Tab tabComm;
 
 	@FXML
 	private TextField filterField;
@@ -113,9 +124,8 @@ public class MainController extends Application {
 	@FXML
 	TableColumn<Produit, Integer> idCategProduit;
 
-	/*
-	 * @FXML TableColumn<Produit, Integer> nbCom;
-	 */
+	// @FXML
+	// TableColumn<Produit, Integer> nbCom;
 
 	@FXML
 	TableView<Commande> tableCommande = new TableView<Commande>();
@@ -159,9 +169,11 @@ public class MainController extends Application {
 		this.detailButton.setDisable(true);
 		this.modifButton.setDisable(true);
 		this.supprButton.setDisable(true);
+		this.detailComButton.setDisable(true);
 		this.lblTarif.setVisible(false);
 		this.filterTarif.setVisible(false);
 		this.filterField.setDisable(true);
+		this.effaceFilter.setDisable(true);
 
 		// CHOIX DE LA PERSISTANCE
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -206,6 +218,8 @@ public class MainController extends Application {
 		nomProduit.setCellValueFactory(new PropertyValueFactory<Produit, String>("nom"));
 		tarifProduit.setCellValueFactory(new PropertyValueFactory<Produit, Float>("tarif"));
 		idCategProduit.setCellValueFactory(new PropertyValueFactory<Produit, Integer>("idcategorie"));
+		// nbCom.setCellValueFactory(new PropertyValueFactory<Produit,
+		// Integer>("quantite"));
 
 		this.tableProduit.getColumns().setAll(idProduit, nomProduit, tarifProduit, idCategProduit);
 
@@ -338,6 +352,7 @@ public class MainController extends Application {
 			this.detailButton.setDisable(false);
 			this.modifButton.setDisable(false);
 			this.supprButton.setDisable(false);
+			this.detailComButton.setDisable(false);
 		} else if (this.tableCommande.isFocused() == true) {
 			this.detailButton.setDisable(false);
 			this.modifButton.setDisable(false);
@@ -354,10 +369,12 @@ public class MainController extends Application {
 		this.detailButton.setDisable(true);
 		this.modifButton.setDisable(true);
 		this.supprButton.setDisable(true);
+		this.detailComButton.setDisable(true);
 	}
 
 	@FXML
 	public void affiFiltre() {
+		this.filterField.setDisable(false);
 		this.lblTarif.setVisible(true);
 		this.filterTarif.setVisible(true);
 	}
@@ -377,33 +394,33 @@ public class MainController extends Application {
 		FXMLLoader fxmlLoader;
 		Stage stage = new Stage();
 		stage.setResizable(false);
-		enumAction action = enumAction.Create;
+		EnumAction action = EnumAction.Create;
 		MainController main = this;
 
 		switch (idTab) {
 		case 0:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCategorie.fxml"));
 
-			new AjoutCategorieController().create(fxmlLoader, dao, stage, main, action);
+			new CategorieController().create(fxmlLoader, dao, stage, main, action);
 			break;
 
 		case 1:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutClient.fxml"));
 
-			new AjoutClientController().create(fxmlLoader, dao, stage, main, action);
+			new ClientController().create(fxmlLoader, dao, stage, main, action);
 			break;
 
 		case 2:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutProduit.fxml"));
 
-			new AjoutProduitController().create(fxmlLoader, dao, stage, main, action);
+			new ProduitController().create(fxmlLoader, dao, stage, main, action);
 
 			break;
 
 		case 3:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCommande.fxml"));
 
-			new AjoutCommandeController().create(fxmlLoader, dao, stage, main, action);
+			new CommandeController().create(fxmlLoader, dao, stage, main, action);
 
 			break;
 		}
@@ -417,7 +434,7 @@ public class MainController extends Application {
 
 		FXMLLoader fxmlLoader;
 		Stage stage = new Stage();
-		enumAction action = enumAction.Update;
+		EnumAction action = EnumAction.Update;
 		MainController main = this;
 
 		switch (idTab) {
@@ -425,28 +442,28 @@ public class MainController extends Application {
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCategorie.fxml"));
 
 			Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
-			new AjoutCategorieController().update(fxmlLoader, dao, stage, main, action, categ);
+			new CategorieController().update(fxmlLoader, dao, stage, main, action, categ);
 			break;
 
 		case 1:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutClient.fxml"));
 
 			Client cli = this.tableClients.getSelectionModel().getSelectedItem();
-			new AjoutClientController().update(fxmlLoader, dao, stage, main, action, cli);
+			new ClientController().update(fxmlLoader, dao, stage, main, action, cli);
 			break;
 
 		case 2:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutProduit.fxml"));
 
 			Produit prod = this.tableProduit.getSelectionModel().getSelectedItem();
-			new AjoutProduitController().update(fxmlLoader, dao, stage, main, action, prod);
+			new ProduitController().update(fxmlLoader, dao, stage, main, action, prod);
 			break;
 
 		case 3:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCommande.fxml"));
 
 			Commande com = this.tableCommande.getSelectionModel().getSelectedItem();
-			new AjoutCommandeController().update(fxmlLoader, dao, stage, main, action, com);
+			new CommandeController().update(fxmlLoader, dao, stage, main, action, com);
 			break;
 		}
 
@@ -464,7 +481,7 @@ public class MainController extends Application {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("Suppression d'une categorie");
 			alert.setHeaderText("Voulez-vous vraiment supprimer cette categorie ? ");
-			alert.setContentText(categ.getTitre() + " " + categ.getVisuel());
+			alert.setContentText("Categorie : " + categ.getTitre());
 			ButtonType accept = new ButtonType("Oui");
 			ButtonType refus = new ButtonType("Non");
 			alert.getButtonTypes().setAll(accept, refus);
@@ -484,7 +501,7 @@ public class MainController extends Application {
 			Alert alert1 = new Alert(Alert.AlertType.WARNING);
 			alert1.setTitle("Suppression d'un client");
 			alert1.setHeaderText("Voulez-vous vraiment supprimer ce client ? ");
-			alert1.setContentText(cli.getNom() + " " + cli.getPrenom());
+			alert1.setContentText("Client : " + cli.getNom() + " " + cli.getPrenom());
 			ButtonType accept1 = new ButtonType("Oui");
 			ButtonType refus1 = new ButtonType("Non");
 			alert1.getButtonTypes().setAll(accept1, refus1);
@@ -503,7 +520,7 @@ public class MainController extends Application {
 			Alert alert2 = new Alert(Alert.AlertType.WARNING);
 			alert2.setTitle("Suppression d'un produit");
 			alert2.setHeaderText("Voulez-vous vraiment supprimer ce produit ? ");
-			alert2.setContentText(prod.getNom() + " " + prod.getTarif() + " .€");
+			alert2.setContentText("Produit : " + prod.getNom() + " Prix : " + prod.getTarif() + " .€");
 			ButtonType accept2 = new ButtonType("Oui");
 			ButtonType refus2 = new ButtonType("Non");
 			alert2.getButtonTypes().setAll(accept2, refus2);
@@ -524,8 +541,8 @@ public class MainController extends Application {
 			Alert alert3 = new Alert(Alert.AlertType.WARNING);
 			alert3.setTitle("Suppression d'une commande");
 			alert3.setHeaderText("Voulez-vous vraiment supprimer cette commande ainsi que ses lignes de commande ? ");
-			alert3.setContentText(
-					com.getIdcom() + " " + com.getDatecom() + " " + idclient.getNom() + " " + idclient.getPrenom());
+			alert3.setContentText("Id de la commande : " + com.getIdcom() + " a la date : " + com.getDatecom()
+					+ " du client : " + idclient.getNom() + " " + idclient.getPrenom());
 			ButtonType accept3 = new ButtonType("Oui");
 			ButtonType refus3 = new ButtonType("Non");
 			alert3.getButtonTypes().setAll(accept3, refus3);
@@ -566,7 +583,7 @@ public class MainController extends Application {
 
 		FXMLLoader fxmlLoader;
 		Stage stage = new Stage();
-		enumAction action = enumAction.Visualisation;
+		EnumAction action = EnumAction.Visualisation;
 		MainController main = this;
 
 		switch (idTab) {
@@ -574,29 +591,58 @@ public class MainController extends Application {
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCategorie.fxml"));
 
 			Categorie categ = this.tableCateg.getSelectionModel().getSelectedItem();
-			new AjoutCategorieController().visualisation(fxmlLoader, dao, stage, main, action, categ);
+			new CategorieController().visualisation(fxmlLoader, dao, stage, main, action, categ);
 			break;
 
 		case 1:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutClient.fxml"));
 
 			Client cli = this.tableClients.getSelectionModel().getSelectedItem();
-			new AjoutClientController().visualisation(fxmlLoader, dao, stage, main, action, cli);
+			new ClientController().visualisation(fxmlLoader, dao, stage, main, action, cli);
 			break;
 
 		case 2:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutProduit.fxml"));
 
 			Produit prod = this.tableProduit.getSelectionModel().getSelectedItem();
-			new AjoutProduitController().visualisation(fxmlLoader, dao, stage, main, action, prod);
+			new ProduitController().visualisation(fxmlLoader, dao, stage, main, action, prod);
 			break;
 
 		case 3:
 			fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ajoutCommande.fxml"));
 
 			Commande com = this.tableCommande.getSelectionModel().getSelectedItem();
-			new AjoutCommandeController().visualisation(fxmlLoader, dao, stage, main, action, com);
+			new CommandeController().visualisation(fxmlLoader, dao, stage, main, action, com);
 			break;
 		}
+	}
+
+	@FXML
+	public void detailComCli() throws Exception {
+
+		Client cli = this.tableClients.getSelectionModel().getSelectedItem();
+
+		SingleSelectionModel<Tab> tabCom = tabpane.getSelectionModel();
+		tabCom.select(3);
+
+		this.filterField.setText(String.valueOf(cli.getIdclient()));
+
+		this.detailButton.setDisable(true);
+		this.modifButton.setDisable(true);
+		this.supprButton.setDisable(true);
+		this.detailComButton.setDisable(true);
+
+	}
+
+	@FXML
+	public void effaceFiltre() {
+		this.filterField.setText("");
+		this.filterTarif.setText("");
+		this.effaceFilter.setDisable(true);
+	}
+
+	@FXML
+	public void changeEtatButton() {
+		this.effaceFilter.setDisable(false);
 	}
 }
