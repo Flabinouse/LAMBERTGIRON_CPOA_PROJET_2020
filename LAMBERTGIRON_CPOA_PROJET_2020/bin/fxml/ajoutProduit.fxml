@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="376.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProduitController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="376.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProduitController">
    <children>
       <GridPane fx:id="idGrid1" prefHeight="269.0" prefWidth="545.0" style="-fx-border-color: Black;">
         <columnConstraints>
@@ -72,12 +72,15 @@
                         <Font name="Calibri" size="16.0" />
                      </font></TextField>
                   <Label fx:id="idLabelEuro" prefHeight="16.0" prefWidth="106.0" text=".€ à l'unité" />
-                  <Label text="Visuel :">
+                  <Label prefHeight="22.0" prefWidth="67.0" text="Visuel :">
                      <font>
                         <Font name="Calibri" size="18.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
-                  <TextField fx:id="idTextVisuel" promptText="ex Pull1.png" />
+                  <TextField fx:id="idTextVisuel" prefHeight="31.0" prefWidth="139.0" promptText="ex Pull1.png" />
                </children>
             </HBox>
          </children>
