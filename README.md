@@ -1,7 +1,7 @@
 Projet Java 2020 - Lambert Giron
 
 Ce qui fonctionne :
-- Ajout, modification, suppression et visualisation focntionne pour Catégorie, Client, Produit et Commande (MySQL)
+- Ajout, modification, suppression et visualisation fonctionne pour Catégorie, Client, Produit et Commande (MySQL)
 - Ajout, modification, suppression et visualisation fonctionne pour Catégorie, Client et Produit (ListeMémoire)
 - Ajout, suppression et visualisation fonctionne pour Commande (ListeMémoire)
 - Les recherches dans les tables (MySQL et ListeMémoire)
