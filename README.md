@@ -1,9 +1,9 @@
 Projet Java 2020 - Lambert Giron
 
 Ce qui fonctionne :
-- Ajout, modification, suppression et visualisation marche pour Catégorie, Client, Produit et Commande (MySQL)
-- Ajout, modification, suppression et visualisation marche pour Catégorie, Client et Produit (ListeMémoire)
-- Ajout, suppression et visualisation marche pour Commande (ListeMémoire)
+- Ajout, modification, suppression et visualisation focntionne pour Catégorie, Client, Produit et Commande (MySQL)
+- Ajout, modification, suppression et visualisation fonctionne pour Catégorie, Client et Produit (ListeMémoire)
+- Ajout, suppression et visualisation fonctionne pour Commande (ListeMémoire)
 - Les recherches dans les tables (MySQL et ListeMémoire)
   - Produit : recherche par categorie, nom de produit et tarif(tous les produits inférieurs au tarif rentré)
   - Client : trié par ordre alphabétique, recherche par nom et prenom
@@ -13,7 +13,8 @@ Ce qui fonctionne :
 - Présence d'un bouton pour effacer les recherches
 
 Ce qui ne fonctionne pas :
-- Nombre total des produits commandés
+- Nombre total de produits commandés
+- Modification ne fonctionne pas pour Commande (ListeMémoire)
 - On ne peut pas faire les recherches des produits dans les Commandes
 
 Répartition des tâches :
