@@ -19,12 +19,12 @@ Ce qui ne fonctionne pas :
 
 Répartition des tâches :
 - Flavien :
-  - Creation fenetre + JavaFX pour Produit
-  - Creation fenetre + JavaFX pour Commande
-  - Creation fenetre + JavaFX pour Main
+  - Creation fenetre + controller pour Produit
+  - Creation fenetre + controller pour Commande
+  - Creation fenetre + controller pour Main
 - Maxence :
-  - Creation fenetre + JavaFX pour Categorie
-  - Creation fenetre + JavaFX pour Client
+  - Creation fenetre + controller pour Categorie
+  - Creation fenetre + controller pour Client
   
 Estimation du pourcentage de l'investissement de chacun dans le projet : 
 - Flavien : 60%
