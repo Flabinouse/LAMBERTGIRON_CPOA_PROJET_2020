@@ -1,4 +1,4 @@
-Projet Java 2020 - Lambert Giron
+Projet Java 2020 - LAMBERT, GIRON
 
 Ce qui fonctionne :
 - Ajout, modification, suppression et visualisation fonctionne pour Catégorie, Client, Produit et Commande (MySQL)
