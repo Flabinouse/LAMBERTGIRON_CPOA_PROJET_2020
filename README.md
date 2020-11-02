@@ -18,8 +18,14 @@ Ce qui ne fonctionne pas :
 - On ne peut pas faire les recherches des produits dans les Commandes
 
 Répartition des tâches :
-- Regarder dans la répartition des tâches sur Github (Projects)
-
+- Flavien :
+  - Creation fenetre + JavaFX pour Produit
+  - Creation fenetre + JavaFX pour Commande
+  - Creation fenetre + JavaFX pour Main
+- Maxence :
+  - Creation fenetre + JavaFX pour Categorie
+  - Creation fenetre + JavaFX pour Client
+  
 Estimation du pourcentage de l'investissement de chacun dans le projet : 
 - Flavien : 60%
 - Maxence : 40%
