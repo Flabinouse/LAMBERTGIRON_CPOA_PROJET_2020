@@ -140,7 +140,7 @@
                <bottom>
                   <Pane prefHeight="72.0" prefWidth="754.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="filterField" layoutX="116.0" layoutY="25.0" onKeyPressed="#changeEtatButton" prefHeight="25.0" prefWidth="223.0" promptText="ex : LAROCHE" />
+                        <TextField fx:id="filterField" layoutX="116.0" layoutY="25.0" onKeyPressed="#changeEtatButton" onMouseClicked="#deselectParam" prefHeight="25.0" prefWidth="223.0" promptText="ex : LAROCHE" />
                         <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="25.0" prefHeight="22.0" prefWidth="102.0" text="Recherche :" textAlignment="RIGHT">
                            <font>
                               <Font name="Calibri" size="18.0" />
@@ -149,7 +149,7 @@
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="filterTarif" layoutX="405.0" layoutY="24.0" onKeyPressed="#changeEtatButton" prefHeight="25.0" prefWidth="49.0" promptText="ex : 20" />
+                        <TextField fx:id="filterTarif" layoutX="405.0" layoutY="24.0" onKeyPressed="#changeEtatButton" onMouseClicked="#deselectParam" prefHeight="25.0" prefWidth="49.0" promptText="ex : 20" />
                         <Button fx:id="closeButton" alignment="CENTER" layoutX="638.0" layoutY="23.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#close" prefHeight="26.0" prefWidth="70.0" text="Fermer" />
                         <Button fx:id="effaceFilter" layoutX="484.0" layoutY="24.0" mnemonicParsing="false" onAction="#effaceFiltre" prefHeight="25.0" prefWidth="110.0" text="Effacer" />
                         <Label fx:id="lblEuros" layoutX="454.0" layoutY="25.0" text=".€">
